@@ -1,9 +1,5 @@
 var mongoose = require('mongoose');
 
-//design the two schema below and use sub docs
-//to define the relationship between posts and comments
-
-
 let postSchema = new mongoose.Schema({
   city: String,
   street: String,
