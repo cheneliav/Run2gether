@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+  <link href="style.css" rel="stylesheet">
+
+  <title>Run2gether search&post</title>
+</head>
+
+<body>
+
+
+
+  <div class="posts"></div>
+
+
+  <script id="post-template" type="text/x-handlebars-template">
+    <div class="post" data-id="{{_id}}" data-idUser="{{idUser}}">
+
+      <i class="fa fa-trash remove-post"></i>
+
+     </div>
+
+</script>
+
+
+  <script src="jquery/dist/jquery.js"></script>
+  <script src="handlebars/dist/handlebars.js"></script>
+  <script src="main.js" type="module"></script>
+
+</body>
+
+</html>
