@@ -5,13 +5,6 @@ let locationSchema = new mongoose.Schema({
   lng: String
 });
 
-// let userSchema = new mongoose.Schema({
-//   userName: { type: String, required: true },
-//   password: { type: String, required: true },
-//   posts: [postsSchema]
-// });
-
-
 let postSchema = new mongoose.Schema({
   city: String,
   street: String,
