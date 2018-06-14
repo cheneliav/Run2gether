@@ -1,7 +1,15 @@
 var mongoose = require('mongoose');
 
-//design the two schema below and use sub docs
-//to define the relationship between posts and comments
+let locationSchema = new mongoose.Schema({
+  lat: String,
+  lng: String
+});
+
+// let userSchema = new mongoose.Schema({
+//   userName: { type: String, required: true },
+//   password: { type: String, required: true },
+//   posts: [postsSchema]
+// });
 
 
 let postSchema = new mongoose.Schema({
@@ -10,10 +18,12 @@ let postSchema = new mongoose.Schema({
   trainingType: String,
   distance: String,
   departureTime: String,
-  idUser: String
+  idUser: String,
+  location: { locationSchema }
 });
 
-let Post = mongoose.model('post', postSchema)
+// let Post = mongoose.model('post', postSchema)
 
-module.exports = Post;
+// module.exports = Post;
+module.exports = postSchema;
 

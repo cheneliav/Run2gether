@@ -1,12 +1,10 @@
 var mongoose = require('mongoose');
-
-//design the two schema below and use sub docs
-//to define the relationship between posts and comments
-
+var postsSchema = require('./postModel') // try to import Post Model
 
 let userSchema = new mongoose.Schema({
   userName: { type: String, required: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  posts: [postsSchema]
 });
 
 
