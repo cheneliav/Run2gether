@@ -1,7 +1,7 @@
 var textPostOrigin = "";
 
 class EventsHandler {
-    constructor(postsRepository, postsRenderer) {
+    constructor(postsRepository, postsRenderer, ) {
         this.postsRepository = postsRepository;
         this.postsRenderer = postsRenderer;
         this.$posts = $(".posts");
@@ -10,25 +10,29 @@ class EventsHandler {
     /*=====================================================
     add / remove post
     =======================================================*/
-    registerAddPost() {
-        $('#addpost').on('click keyup', (event) => {
-            console.log('in registerAddPost event:');
 
-            event.preventDefault();
-            if (event.keyCode === 13 || event.type === 'click') {
-                let $input = $("#postText");
-                if ($input.val() === "") {
-                    alert("Please enter text!");
-                }
-                else {
-                    this.postsRepository.addPost($input.val()).then(() => {
-                        this.postsRenderer.renderPosts(this.postsRepository.posts);
-                        $input.val("");
-                    }).catch(() => { console.log('catch- error in adding post function'); });
-                }
-            }
-        });
-    }
+
+
+
+    // registerAddPost() {
+    //     $('#addpost').on('click keyup', (event) => {
+    //         console.log('in registerAddPost event:');
+
+    //         event.preventDefault();
+    //         if (event.keyCode === 13 || event.type === 'click') {
+    //             let $input = $("#postText");
+    //             if ($input.val() === "") {
+    //                 alert("Please enter text!");
+    //             }
+    //             else {
+    //                 this.postsRepository.addPost($input.val()).then(() => {
+    //                     this.postsRenderer.renderPosts(this.postsRepository.posts);
+    //                     $input.val("");
+    //                 }).catch(() => { console.log('catch- error in adding post function'); });
+    //             }
+    //         }
+    //     });
+    // }
 
     // registerRemovePost() {
     //     this.$posts.on('click', '.remove-post', (event) => {
