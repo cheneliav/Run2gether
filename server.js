@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-let myConnection = process.env.CONNECTION_STRING || 'mongodb://localhost/spacebookDB';
+let myConnection = process.env.CONNECTION_STRING || 'mongodb://localhost/runTogetherDB';
 mongoose.connect(myConnection, { useMongoClient: true })
   .then(() => {console.log('Successfully connected to mongoDB');})
   .catch((error) => console.error(error));
