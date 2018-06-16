@@ -1,38 +1,56 @@
-var textPostOrigin = "";
 
 class EventsHandler {
-    constructor(postsRepository, postsRenderer, ) {
+    constructor(postsRepository, postsRenderer, userRepository) {
+        this.userRepository = userRepository;
         this.postsRepository = postsRepository;
         this.postsRenderer = postsRenderer;
         this.$posts = $(".posts");
+        console.log('in constructor user');
+
     }
 
     /*=====================================================
-    add / remove post
+    add User
     =======================================================*/
 
+    registerAddUser() {
+        $('.signup').on('click', (event) => {
 
+            // event.preventDefault();
 
+            console.log('in registerAddUser event:');
 
-    // registerAddPost() {
-    //     $('#addpost').on('click keyup', (event) => {
-    //         console.log('in registerAddPost event:');
+            let userName = $("#userName").val();
+            let password = $("#pswd").val();
+            let repeatPassword = $("#repeatPswd").val();
 
-    //         event.preventDefault();
-    //         if (event.keyCode === 13 || event.type === 'click') {
-    //             let $input = $("#postText");
-    //             if ($input.val() === "") {
-    //                 alert("Please enter text!");
-    //             }
-    //             else {
-    //                 this.postsRepository.addPost($input.val()).then(() => {
-    //                     this.postsRenderer.renderPosts(this.postsRepository.posts);
-    //                     $input.val("");
-    //                 }).catch(() => { console.log('catch- error in adding post function'); });
-    //             }
-    //         }
-    //     });
-    // }
+            if (userName == "" || password == "" || repeatPassword == "") {
+                return;
+            }
+
+            event.preventDefault();
+
+            // check if the passwords are the same
+            // check this here or in the ajax or server ?
+            if (password !== repeatPassword) {
+                alert("passwords are not the same");
+            }
+
+            else
+            //TODO :
+            //check if user name is already exist in db !!!
+            {
+                let userObj = { userName, password };
+
+                this.userRepository.addUser(userName, password).then(() => {
+                    // this.postsRenderer.renderPosts(this.postsRepository.posts);
+                    // $input.val("");
+
+                }).catch(() => { console.log('catch- error in adding user function'); });
+            }
+
+        });
+    }
 
     // registerRemovePost() {
     //     this.$posts.on('click', '.remove-post', (event) => {
