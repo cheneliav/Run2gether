@@ -1,9 +1,9 @@
 /**
- * @class Responsible for storing and manipulating Spacebook posts, in-memory
+ * @class Responsible for storing and manipulating Run2gether posts, in-memory
  */
 class UserRepository {
   constructor() {
-      this.users = [];
+    this.users = [];
   }
 
   //request all the posts from the DB
@@ -25,24 +25,28 @@ class UserRepository {
     //   });
   }
 
-  addPost(postText) {
-      console.log('in AddPost:');
+  addUser(userName, password) {
+    console.log('in AddPost:');
 
-      // return $.ajax({
-      //     method: 'POST',
-      //     url: '/posts',
-      //     data: { text: postText, comments: [] },
-      //     //After a new post has been created in the DB it should be returned to the client
-      //     success: (newPost) => {
-      //         console.log("postText: " + postText);
-      //         // adding the post to posts array
-      //         this.posts.push(newPost);
-      //         // this.posts.unshift(newPost);
-      //     },
-      //     error: function (jqXHR, textStatus, errorThrown) {
-      //         console.log(textStatus);
-      //     }
-      // });
+    this.users.push({ userName, password });
+    console.log('users array:');
+
+    console.log(this.users);
+
+
+    // return $.ajax({
+    //     method: 'POST',
+    //     url: '/posts',
+    //     data: { userName, password},
+    //     //After a new post has been created in the DB it should be returned to the client
+    //     success: (newUser) => {
+    //         // adding the user to users array
+    //         this.users.push(newUser);
+    //     },
+    //     error: function (jqXHR, textStatus, errorThrown) {
+    //         console.log(textStatus);
+    //     }
+    // });
   }
 
 

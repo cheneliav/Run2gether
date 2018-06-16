@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-let myConnection = process.env.CONNECTION_STRING || 'mongodb://localhost/spacebookDB';
+let myConnection = process.env.CONNECTION_STRING || 'mongodb://localhost/runTogetherDB';
 mongoose.connect(myConnection, { useMongoClient: true })
   .then(() => {console.log('Successfully connected to mongoDB');})
   .catch((error) => console.error(error));
@@ -31,12 +31,13 @@ app.get('/posts', (req, res) => {
 
 // 2) to handle adding a post
 //When requested by a client, the route needs to take the data supplied by the client and from it create a new post.
-app.post('/posts', (req, res) => {
-  var newPostDB = new Post(req.body);
-  newPostDB.save((err, post) => {
+app.post('/users', (req, res) => {
+  var newUserDB = new Post(req.body);
+  // this create an _id to the  new user
+  newUserDB.save((err, post) => {
     if (err)
       throw err;
-    res.send(newPostDB);
+    res.send(newUserDB);
   });
 });
 
