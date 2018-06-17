@@ -1,11 +1,26 @@
 var mongoose = require('mongoose');
 
-var postsSchema = require('./postModel') // try to import Post Model
+// var postsSchema = require('./postModel') // try to import Post Model
+
+let locationSchema = new mongoose.Schema({
+  lat: String,
+  lng: String
+});
+
+let postSchema = new mongoose.Schema({
+  city: String,
+  street: String,
+  trainingType: String,
+  distance: String,
+  departureTime: String,
+  idUser: String,
+  location: { locationSchema }
+});
 
 let userSchema = new mongoose.Schema({
   userName: { type: String, required: true },
   password: { type: String, required: true },
-  posts: [postsSchema]
+  posts: [postSchema]
 });
 
 

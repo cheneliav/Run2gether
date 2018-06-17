@@ -6,49 +6,60 @@ class UserRepository {
     this.users = [];
   }
 
-  //request all the posts from the DB
-  //in the success handler- populate the posts array and then use it to render the view
-  getPosts() {
-    // return  $.ajax({
-    //       method: 'GET',
-    //       url: 'posts',
-    //       dataType: 'json',
-    //       success: (posts)=> {
-    //           console.log('in getPosts, posts-array:');
-    //           console.log(posts);
-    //           // add the posts and the comments to array
-    //           this.posts = posts;
-    //       },
-    //       error: function (jqXHR, textStatus, errorThrown) {
-    //           console.log(textStatus);
-    //       }
-    //   });
+  //request all the users from the DB
+  //in the success handler- populate the users array
+  getUsers() {
+    return  $.ajax({
+          method: 'GET',
+          url: 'users',
+          dataType: 'json',
+          success: (users)=> {
+              console.log('in getUsers, users-array:');
+              console.log(users);
+              // add the users and the posts to array
+              this.users = users;
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+              console.log(textStatus);
+          }
+      });
   }
+
+
+  //TODO:
+  //  need to set users array to this.users ?
+  // where to do that ? with func like above , just with url of users?
+  // dont forget to move to another page and save in local storgae only in the LOG IN button success!!!
+  // for now i did it in SIGN UP button success .
 
   addUser(userName, password) {
-    console.log('in AddPost:');
+    console.log('in AddUser:');
 
-    this.users.push({ userName, password });
-    console.log('users array:');
+    return $.ajax({
+      method: 'POST',
+      url: '/users',
+      data: { userName: userName, password: password, posts: [] },
+      //After a new post has been created in the DB it should be returned to the client
+      success: (newUser) => {
+        // adding the user to users array
+        this.users.push(newUser);
 
-    console.log(this.users);
+        console.log('users array:');
+        console.log(this.users);
 
+        //TODO :
+        // save the user details in local storage
 
-    // return $.ajax({
-    //     method: 'POST',
-    //     url: '/posts',
-    //     data: { userName, password},
-    //     //After a new post has been created in the DB it should be returned to the client
-    //     success: (newUser) => {
-    //         // adding the user to users array
-    //         this.users.push(newUser);
-    //     },
-    //     error: function (jqXHR, textStatus, errorThrown) {
-    //         console.log(textStatus);
-    //     }
-    // });
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
   }
 
+  addPost() {
+
+  }
 
 }
 
