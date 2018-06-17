@@ -1,8 +1,9 @@
 
 class EventsHandler {
-    constructor(postsRepository, postsRenderer, userRepository) {
+    // constructor(postsRepository, postsRenderer, userRepository) {
+    constructor(postsRenderer, userRepository) {
         this.userRepository = userRepository;
-        this.postsRepository = postsRepository;
+        // this.postsRepository = postsRepository;
         this.postsRenderer = postsRenderer;
         this.$posts = $(".posts");
         console.log('in constructor user');
@@ -41,36 +42,20 @@ class EventsHandler {
             //check if user name is already exist in db !!!
             {
                 let userObj = { userName, password };
-
                 this.userRepository.addUser(userName, password).then(() => {
-                    // this.postsRenderer.renderPosts(this.postsRepository.posts);
-                    // $input.val("");
+                    // save the user details in local storage- WHERE TO DO THAT ? here or in addUser success ?
 
+                    // move to postSearch.html page
+                    window.location.href = "/postSearch.html";
                 }).catch(() => { console.log('catch- error in adding user function'); });
             }
 
         });
     }
 
-    // registerRemovePost() {
-    //     this.$posts.on('click', '.remove-post', (event) => {
-    //         console.log('in registerRemovePost event:');
+    registerAddPost(){
 
-    //         let index = $(event.currentTarget).closest('.post').index();
-    //         let id = $(event.currentTarget).closest('.post').data('id');
-    //         this.postsRepository.removePost(index, id).then(() => {
-    //             // remove the post from page
-    //             let $post = $(event.currentTarget).closest('.post');
-    //             $post.remove();
-    //         });
-    //     });
-
-    // }
-
-
-
-
-
+    }
 
 
 }
