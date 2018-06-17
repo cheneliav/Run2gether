@@ -21,5 +21,6 @@ console.log( userRepository.users);
 
 
 eventsHandler.registerAddUser();
+eventsHandler.registerLogIn();
 eventsHandler.registerAddPost();
 

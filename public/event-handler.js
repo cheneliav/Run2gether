@@ -37,23 +37,91 @@ class EventsHandler {
                 alert("passwords are not the same");
             }
 
-            else
-            //TODO :
-            //check if user name is already exist in db !!!
-            {
-                let userObj = { userName, password };
-                this.userRepository.addUser(userName, password).then(() => {
-                    // save the user details in local storage- WHERE TO DO THAT ? here or in addUser success ?
+            //check if user name is already exist in db !!
+            console.log('users array event handlr:');
 
-                    // move to postSearch.html page
-                    window.location.href = "/postSearch.html";
-                }).catch(() => { console.log('catch- error in adding user function'); });
+            console.log(this.userRepository.users);
+            let userArray = this.userRepository.users;
+            let isExist = false;
+            for (let i = 0; i < userArray.length; i++) {
+                if (userArray[i].userName === userName) {
+                    isExist = true;
+                    break;
+                }
+            }
+
+            console.log('ans of user name exist : ' + isExist);
+
+            if (isExist) {
+                alert("this user name is already exist, choose another");
+            }
+
+            else {
+                let userObj = { userName, password };
+                this.userRepository.addUser(userName, password).catch(() => { console.log('catch- error in adding user function'); });
             }
 
         });
     }
 
-    registerAddPost(){
+    registerLogIn() {
+        $('.login').on('click', (event) => {
+            console.log('in login ');
+
+
+            let userName = $("#name").val();
+            let password = $("#pswdLogIn").val();
+            //check if user name is exist in db !!
+            console.log('users array event handlr:');
+
+            console.log(this.userRepository.users);
+            let userArray = this.userRepository.users;
+            let isExist = false;
+            let pswdFromDB;
+            let userId;
+            for (let i = 0; i < userArray.length; i++) {
+                if (userArray[i].userName === userName) {
+                    isExist = true;
+                    pswdFromDB = userArray[i].password;
+                    userId = userArray[i]._id;
+                    break;
+                }
+            }
+
+            if (userName == "" || password == "") {
+                return;
+            }
+
+            event.preventDefault();
+
+
+            console.log('ans of user name exist : ' + isExist);
+
+            if (!isExist) {
+                alert("this user name is NOT exist in db");
+            }
+
+            else { // user name exist
+                if (password != pswdFromDB) {
+                    alert("password is wrong!");
+                }
+
+                else { // user name and password are correct
+
+                    // save the user details in local storage
+                    // store, a JS object as JSON string, in local storage under the key "user"
+                    localStorage.setItem('user', JSON.stringify({ userName: userName, password: pswdFromDB, _id: userId }));
+
+                    // move to postSearch.html page
+                    window.location.href = "/postSearch.html";
+                }
+
+            }
+
+        });
+    }
+
+    registerAddPost() {
 
     }
 

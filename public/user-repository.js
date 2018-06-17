@@ -46,10 +46,6 @@ class UserRepository {
 
         console.log('users array:');
         console.log(this.users);
-
-        //TODO :
-        // save the user details in local storage
-
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
