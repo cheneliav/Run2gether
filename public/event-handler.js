@@ -96,6 +96,7 @@ class EventsHandler {
             if (!isExist) {
                 // alert("This user name is NOT exists in db");
                 $('#nameError').removeClass('d-none');
+                event.preventDefault();
                 return;
             }
 
@@ -103,13 +104,13 @@ class EventsHandler {
                 if (password != pswdFromDB) {
                     // alert("Password is wrong!");
                     $('#pswdLogInError').removeClass('d-none');
+                    event.preventDefault();
                     return;
                 }
 
                 // user name and password are correct
                 else {
                     console.log('pswrd and userName are correct');
-
 
                     // save the user details in local storage
                     // store, a JS object as JSON string, in local storage under the key "user"
