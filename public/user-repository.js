@@ -78,6 +78,7 @@ class UserRepository {
       //  return (data.name === e.name)
    });
 
+    
    
     this.users[0].posts.push(postObj);
     console.log(this.users);
