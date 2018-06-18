@@ -57,6 +57,32 @@ class EventsHandler {
 
     }
 
+    /*=====================================================
+    search
+    =======================================================*/
+
+    registerSearch() {
+        $('.searchBtn').on('click', (event) => {
+            event.preventDefault();
+
+            let searchCity = $(".search-city").val();
+
+            let searchDistance = 0;
+            if ($(".search-distance :selected").val() != 0){
+                 searchDistance = $(".search-distance :selected").text();
+            }
+
+            let searchTraining = 0;
+            alert($(".search-distance :selected").val());
+            if ($(".search-distance :selected").val() != 0){
+                searchTraining = $(".search-training :selected").text();
+           }
+           
+           this.userRepository.searchPosts(searchCity, searchDistance, searchTraining);
+        });
+    }
+
+
 
 }
 

@@ -43,6 +43,23 @@ app.post('/users', (req, res) => {
 });
 
 
+
+app.get('/posts', (req, res) => {
+console.log(req.query.city);
+console.log(req.query.distance);
+console.log(req.query.training);
+  User.find(function (error, posts) {
+    if (error)
+      throw error;
+    console.log(posts); 
+    //log here in the console all the users
+    res.send(posts);
+  });
+});
+
+
+
+
 //PORT
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Server up and running on port ${PORT}...`));

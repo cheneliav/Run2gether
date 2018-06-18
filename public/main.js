@@ -22,4 +22,5 @@ console.log( userRepository.users);
 
 eventsHandler.registerAddUser();
 eventsHandler.registerAddPost();
+eventsHandler.registerSearch();
 

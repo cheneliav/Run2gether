@@ -4,6 +4,7 @@
 class UserRepository {
   constructor() {
     this.users = [];
+    this.searchResults = [];
   }
 
   //request all the users from the DB
@@ -58,6 +59,36 @@ class UserRepository {
   }
 
   addPost() {
+
+  }
+
+  searchPosts(searchCity, searchDistance, searchTraining) {
+   
+    let params = {
+      city: searchCity,
+      distance: searchDistance,
+      training: searchTraining 
+  };
+  let query = $.param(params);
+
+  // document.write(query);
+
+
+   console.log(searchCity);
+   alert(query);
+    return  $.ajax({
+      method: 'GET',
+      url: '/posts?'+ query,
+      dataType: 'json',
+      success: (searchResults)=> {
+
+          // add the posts to array
+          this.searchResults = searchResults;
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+          console.log(textStatus);
+      }
+    });     
 
   }
 
