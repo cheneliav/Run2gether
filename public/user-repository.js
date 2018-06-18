@@ -1,5 +1,5 @@
 /**
- * @class Responsible for storing and manipulating Run2gether posts, in-memory
+ * @class Responsible for storing and manipulating Run2gether users and posts, in-memory
  */
 class UserRepository {
   constructor() {
@@ -16,7 +16,7 @@ class UserRepository {
           success: (users)=> {
               console.log('in getUsers, users-array:');
               console.log(users);
-              // add the users and the posts to array
+              // set the users and the posts to array
               this.users = users;
           },
           error: function (jqXHR, textStatus, errorThrown) {
@@ -24,13 +24,6 @@ class UserRepository {
           }
       });
   }
-
-
-  //TODO:
-  //  need to set users array to this.users ?
-  // where to do that ? with func like above , just with url of users?
-  // dont forget to move to another page and save in local storgae only in the LOG IN button success!!!
-  // for now i did it in SIGN UP button success .
 
   addUser(userName, password) {
     console.log('in AddUser:');
