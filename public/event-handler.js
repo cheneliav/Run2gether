@@ -1,17 +1,14 @@
 
 class EventsHandler {
-    // constructor(postsRepository, postsRenderer, userRepository) {
     constructor(postsRenderer, userRepository) {
         this.userRepository = userRepository;
-        // this.postsRepository = postsRepository;
         this.postsRenderer = postsRenderer;
         this.$posts = $(".posts");
         console.log('in constructor user');
-
     }
 
     /*=====================================================
-    add User
+    add User | sign up
     =======================================================*/
 
     registerAddUser() {
@@ -25,29 +22,46 @@ class EventsHandler {
             let password = $("#pswd").val();
             let repeatPassword = $("#repeatPswd").val();
 
-            if (userName == "" || password == "" || repeatPassword == "") {
+            if (userName == "" || password == "" || repeatPassword == "")
                 return;
-            }
 
             event.preventDefault();
 
             // check if the passwords are the same
-            // check this here or in the ajax or server ?
-            if (password !== repeatPassword) {
-                alert("passwords are not the same");
+            if (password != repeatPassword) {
+                // alert("Passwords are not the same");
+                //show the error message
+                $('#pswrdNotSameError').removeClass('d-none');
+                return;
             }
 
-            else
-            //TODO :
-            //check if user name is already exist in db !!!
-            {
-                let userObj = { userName, password };
-                this.userRepository.addUser(userName, password).then(() => {
-                    // save the user details in local storage- WHERE TO DO THAT ? here or in addUser success ?
+            else {
+                $('#pswrdNotSameError').addClass('d-none');
+            }
 
-                    // move to postSearch.html page
-                    window.location.href = "/postSearch.html";
-                }).catch(() => { console.log('catch- error in adding user function'); });
+            //check if user name is already exists in db
+            console.log('users array event handler:');
+            console.log(this.userRepository.users);
+            let userArray = this.userRepository.users;
+            let isExist = false;
+            for (let i = 0; i < userArray.length; i++) {
+                if (userArray[i].userName === userName) {
+                    isExist = true;
+                    break;
+                }
+            }
+            console.log('user name exist : ' + isExist);
+
+            if (isExist) {
+                // alert("This user name is already exists, choose another");
+                $('#usernameError').removeClass('d-none');
+                return;
+            }
+
+            // username and password are valid
+            else {
+                $('#usernameError').addClass('d-none');
+                this.userRepository.addUser(userName, password).catch(() => { console.log('catch- error in adding user function'); });
             }
 
         });
@@ -81,6 +95,84 @@ class EventsHandler {
 
 
         })
+    }
+    registerLogIn() {
+        $('.login').on('click', (event) => {
+            console.log('in login ');
+
+            let userName = $("#name").val();
+            let password = $("#pswdLogIn").val();
+            //check if user name exists in db
+            console.log('users array event handler:');
+            console.log(this.userRepository.users);
+
+            if (userName == "" || password == "")
+                return;
+
+            // event.preventDefault();
+
+            let userArray = this.userRepository.users;
+            let isExist = false;
+            let pswdFromDB;
+            let userId;
+            for (let i = 0; i < userArray.length; i++) {
+                if (userArray[i].userName === userName) {
+                    isExist = true;
+                    pswdFromDB = userArray[i].password;
+                    userId = userArray[i]._id;
+                    break;
+                }
+            }
+            console.log(' user name exist : ' + isExist);
+
+            if (!isExist) {
+                // alert("This user name is NOT exists in db");
+                $('#nameError').removeClass('d-none');
+                event.preventDefault();
+                return;
+            }
+
+            else { // user name exists
+                if (password != pswdFromDB) {
+                    // alert("Password is wrong!");
+                    $('#pswdLogInError').removeClass('d-none');
+                    event.preventDefault();
+                    return;
+                }
+
+                // user name and password are correct
+                else {
+                    console.log('pswrd and userName are correct');
+
+                    // save the user details in local storage
+                    // store, a JS object as JSON string, in local storage under the key "user"
+                    // localStorage.setItem('user', JSON.stringify({ userName: userName, password: pswdFromDB, _id: userId }));
+                    localStorage.setItem('user', JSON.stringify({ userName: userName, _id: userId }));
+
+                    // set the user name
+                    console.log('set user name in Hello...');
+                    $('.helloUser').html(`Hello ${userName}`);
+
+
+                    // move to postSearch.html page
+                    // window.location.href = "/postSearch.html";
+                    // history.pushState(null, '', '/postSearch.html');
+                    // window.location.replace("/postSearch.html");
+                    // event.preventDefault();
+
+                }
+            }
+
+        });
+    }
+
+    registerLoggedOut() {
+        // remove the user from the local storage
+        localStorage.removeItem('user');
+    }
+
+    registerAddPost() {
+
     }
 
 
