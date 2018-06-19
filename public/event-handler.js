@@ -62,7 +62,7 @@ class EventsHandler {
             let gender = $('input[name=gender]:checked').val();
             let address = $('#address').val();
             let city = $('#city').val();
-            let ttime = $('#time').val();
+            let depTime = $('#time').val();
             let distance = $('#myDistance :selected').text();
             let training = $('#myType :selected').text();
 
@@ -75,7 +75,7 @@ class EventsHandler {
             }
             
 
-             this.userRepository.addPost(gender, address, city, ttime, distance, training);
+             this.userRepository.addPost(gender, address, city, depTime, distance, training);
             //  this.userRepository.addPost(gender, address, city, time, distance, training).then(() => {
             // }).catch(() => { console.log('catch- error in adding user function'); });
 

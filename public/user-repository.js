@@ -57,13 +57,13 @@ class UserRepository {
     });
   }
 
-  addPost(gender, address, city, ttime, distance, training) {
+  addPost(gender, address, city, depTime, distance, training) {
     let postObj= { 
       city: city,
       street: address,
       trainingType: training,
       distance: distance,
-      departureTime: ttime,
+      departureTime: depTime,
       idUser: "123",
       location: { lat: "12", lng:"123" }};
 
