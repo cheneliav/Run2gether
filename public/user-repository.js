@@ -46,8 +46,32 @@ class UserRepository {
     });
   }
 
-  addPost() {
+  addPost(gender, address, city, depTime, distance, training) {
+    let postObj= { 
+      city: city,
+      street: address,
+      trainingType: training,
+      distance: distance,
+      departureTime: depTime,
+      idUser: "123",
+      location: { lat: "12", lng:"123" }};
 
+    // find index of user
+
+    // dummy input
+    this.users.push({userName:"batya", password:"123", posts:[]})
+
+    // / return the index of the exist city name in cityWeatherArray
+  //  otherwise-(new city post) return -1
+   var index = this.users.findIndex(function (e) {
+      //  return (data.name === e.name)
+   });
+
+    
+   
+    this.users[0].posts.push(postObj);
+    console.log(this.users);
+    
   }
 
 }

@@ -13,6 +13,9 @@ class EventsHandler {
 
     registerAddUser() {
         $('.signup').on('click', (event) => {
+
+            // event.preventDefault();
+
             console.log('in registerAddUser event:');
 
             let userName = $("#userName").val();
@@ -64,6 +67,35 @@ class EventsHandler {
         });
     }
 
+    registerAddPost() {
+
+        $('#post').on('click', (e) => {
+
+            // e.preventDefault();
+
+            let gender = $('input[name=gender]:checked').val();
+            let address = $('#address').val();
+            let city = $('#city').val();
+            let depTime = $('#time').val();
+            let distance = $('#myDistance :selected').text();
+            let training = $('#myType :selected').text();
+
+            // dont forget lat and lng
+
+            // get the userId from the local storage!!
+
+            if($('#myDistance :selected').val() !=""){
+            let distance = $('#myDistance :selected').text();
+            }
+            
+
+             this.userRepository.addPost(gender, address, city, depTime, distance, training);
+            //  this.userRepository.addPost(gender, address, city, time, distance, training).then(() => {
+            // }).catch(() => { console.log('catch- error in adding user function'); });
+
+
+        })
+    }
     registerLogIn() {
         $('.login').on('click', (event) => {
             console.log('in login ');
@@ -145,6 +177,5 @@ class EventsHandler {
 
 
 }
-
 
 export default EventsHandler
