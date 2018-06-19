@@ -64,13 +64,14 @@ class EventsHandler {
         });
     }
 
+
+
     registerLogIn() {
         $('.login').on('click', (event) => {
             console.log('in login ');
 
             let userName = $("#name").val();
             let password = $("#pswdLogIn").val();
-            //check if user name exists in db
             console.log('users array event handler:');
             console.log(this.userRepository.users);
 
@@ -83,6 +84,7 @@ class EventsHandler {
             let isExist = false;
             let pswdFromDB;
             let userId;
+            //check if user name exists in db
             for (let i = 0; i < userArray.length; i++) {
                 if (userArray[i].userName === userName) {
                     isExist = true;
@@ -103,6 +105,7 @@ class EventsHandler {
             else { // user name exists
                 if (password != pswdFromDB) {
                     // alert("Password is wrong!");
+                    $('#nameError').addClass('d-none');
                     $('#pswdLogInError').removeClass('d-none');
                     event.preventDefault();
                     return;
@@ -114,7 +117,6 @@ class EventsHandler {
 
                     // save the user details in local storage
                     // store, a JS object as JSON string, in local storage under the key "user"
-                    // localStorage.setItem('user', JSON.stringify({ userName: userName, password: pswdFromDB, _id: userId }));
                     localStorage.setItem('user', JSON.stringify({ userName: userName, _id: userId }));
 
                     // set the user name
@@ -122,10 +124,7 @@ class EventsHandler {
                     $('.helloUser').html(`Hello ${userName}`);
 
 
-                    // move to postSearch.html page
-                    // window.location.href = "/postSearch.html";
-                    // history.pushState(null, '', '/postSearch.html');
-                    // window.location.replace("/postSearch.html");
+
                     // event.preventDefault();
 
                 }
@@ -148,3 +147,31 @@ class EventsHandler {
 
 
 export default EventsHandler
+
+
+
+
+                    /*   $.ajax({
+                           method: 'POST',
+                           url: '/postSearch.html',
+                           data: $('#formlogin').serialize(),
+                           success:  (response)=> {
+                             let innerHtml=  this.userRepository.getBody(response);
+                               $('body').html(innerHtml);
+                               // window.location = '/postSearch.html'
+                               localStorage.setItem('user', JSON.stringify({ userName: userName, _id: userId }));
+                               // set the user name
+                               console.log('set user name in Hello...');
+                               $('.helloUser').html(`Hello ${userName}`);
+                           },
+                           error: function (jqXHR, textStatus, errorThrown) {
+                               console.log(textStatus);
+                           }
+                       });
+                       // move to postSearch.html page
+                       // window.location.href = "/postSearch.html";
+                       // history.pushState(null, '', '/postSearch.html');
+                       // window.location.replace("/postSearch.html");
+
+                       event.preventDefault();
+                       */

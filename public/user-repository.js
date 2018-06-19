@@ -28,6 +28,9 @@ class UserRepository {
   addUser(userName, password) {
     console.log('in AddUser:');
 
+    // maybe do here http GET (so in server i will check validation of pswd and username )
+    //and in the "then." do a http POST after the pswrd and username are valid
+
     return $.ajax({
       method: 'POST',
       url: '/users',
@@ -45,6 +48,7 @@ class UserRepository {
       }
     });
   }
+
 
   addPost() {
 

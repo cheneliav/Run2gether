@@ -70,7 +70,9 @@
 
       <div id="login">
         <h1>Welcome Back!</h1>
-        <form action="/postSearch.html" method="post">
+        <!-- <form action="./postSearch.html" id="formlogin"> -->
+        <form action="./postSearch.html" method="post" id="formlogin">
+        <!-- <form action="/logged" method="post" id="formlogin"> -->
         <!-- <form> -->
 
           <div class="top-row">
@@ -79,7 +81,7 @@
                 User Name
                 <span class="req">*</span>
               </label>
-              <input type="text" id="name" required autocomplete="off" />
+              <input type="text" id="name" name="userName" required autocomplete="off" />
               <span  class="d-none" id="nameError">Username does not exist. </span>
 
             </div>
@@ -89,7 +91,7 @@
                 Password
                 <span class="req">*</span>
               </label>
-              <input type="password" id="pswdLogIn" required autocomplete="off" />
+              <input type="password" id="pswdLogIn" name="password" required autocomplete="off" />
               <span  class="d-none" id="pswdLogInError">Password is wrong. </span>
             </div>
 
@@ -98,6 +100,7 @@
           </p> -->
 
             <button type="submit" class="button button-block login">Log In</button>
+            <!-- <button type="button" class="button button-block login">Log In</button> -->
 
           </div>
 

@@ -43,6 +43,30 @@ app.post('/users', (req, res) => {
 });
 
 
+// app.post('/postSearch.html', (req, res) => {
+//   console.log(req.body);
+//   // maybe use this option in sign up- in order to save in db this details ?
+//   console.log(req.body.userName);
+//   console.log(req.body.password);
+//   console.log('in app.post /postSearch.html');
+
+// res.sendFile(__dirname + '/public/postSearch.html')
+//   // res.send();
+// });
+
+// var move = function (req, res, next) {
+//   document.location.href = "/postSearch.html";
+//   next();
+// };
+// app.post('/try', move);
+// // app.post('/try', '/postSearch.html');
+
+app.post('/postSearch.html', (req, res) => {
+  console.log(req.body);
+
+  res.sendFile(__dirname+'/public/postSearch.html');
+});
+
 //PORT
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Server up and running on port ${PORT}...`));
