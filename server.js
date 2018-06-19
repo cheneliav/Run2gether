@@ -24,7 +24,7 @@ app.get('/users', (req, res) => {
   User.find(function (error, users) {
     if (error)
       throw error;
-    console.log(users); //log here in the console all the users
+    // console.log(users); //log here in the console all the users
     res.send(users);
   });
 });
@@ -43,6 +43,55 @@ app.post('/users', (req, res) => {
 });
 
 
+// set users array in req
+function userMiddleware(req, res, next) {
+  User.find(function (error, users) {
+    if (error)
+      throw error;
+    // console.log(users); //log here in the console all the users
+    req.userArray = users;
+    next();
+  });
+};
+
+// app.post('/login', (req, res) => {
+app.post('/login', userMiddleware, (req, res) => {
+  console.log('body:');
+  let = req.body;
+  console.log(req.body); // user and password from the Form
+  console.log(req.userArray); // user array
+
+  //check if user name exists in db
+  let pswdFromDB, userId;
+  for (let i = 0; i < req.userArray.length; i++) {
+    if (req.userArray[i].userName === req.body.userName) {
+      isExist = true;
+      pswdFromDB = req.userArray[i].password;
+      userId = req.userArray[i]._id;
+      break;
+    }
+  }
+  console.log(' user name exist : ' + isExist);
+
+  if (!isExist) {
+    res.send("userNotExist");
+  }
+
+  else { // user name exists
+    if (req.body.password != pswdFromDB) {
+      res.send("passwordWrong");
+    }
+
+    else {
+      res.send("allGood");
+    }
+  }
+
+
+  res.send('try something');
+});
+
+
 // app.post('/postSearch.html', (req, res) => {
 //   console.log(req.body);
 //   // maybe use this option in sign up- in order to save in db this details ?
@@ -50,22 +99,8 @@ app.post('/users', (req, res) => {
 //   console.log(req.body.password);
 //   console.log('in app.post /postSearch.html');
 
-// res.sendFile(__dirname + '/public/postSearch.html')
-//   // res.send();
+//   res.sendFile(__dirname+'/public/postSearch.html');
 // });
-
-// var move = function (req, res, next) {
-//   document.location.href = "/postSearch.html";
-//   next();
-// };
-// app.post('/try', move);
-// // app.post('/try', '/postSearch.html');
-
-app.post('/postSearch.html', (req, res) => {
-  console.log(req.body);
-
-  res.sendFile(__dirname+'/public/postSearch.html');
-});
 
 //PORT
 const PORT = process.env.PORT || 8000;

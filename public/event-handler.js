@@ -70,65 +70,79 @@ class EventsHandler {
         $('.login').on('click', (event) => {
             console.log('in login ');
 
+            this.userRepository.check();
+
             let userName = $("#name").val();
             let password = $("#pswdLogIn").val();
-            console.log('users array event handler:');
-            console.log(this.userRepository.users);
 
             if (userName == "" || password == "")
                 return;
 
-            // event.preventDefault();
+            event.preventDefault();
 
-            let userArray = this.userRepository.users;
-            let isExist = false;
-            let pswdFromDB;
-            let userId;
-            //check if user name exists in db
-            for (let i = 0; i < userArray.length; i++) {
-                if (userArray[i].userName === userName) {
-                    isExist = true;
-                    pswdFromDB = userArray[i].password;
-                    userId = userArray[i]._id;
-                    break;
-                }
-            }
-            console.log(' user name exist : ' + isExist);
+            /*
 
-            if (!isExist) {
-                // alert("This user name is NOT exists in db");
-                $('#nameError').removeClass('d-none');
-                event.preventDefault();
-                return;
-            }
+                        let userName = $("#name").val();
+                        let password = $("#pswdLogIn").val();
+                        console.log('users array event handler:');
+                        console.log(this.userRepository.users);
 
-            else { // user name exists
-                if (password != pswdFromDB) {
-                    // alert("Password is wrong!");
-                    $('#nameError').addClass('d-none');
-                    $('#pswdLogInError').removeClass('d-none');
-                    event.preventDefault();
-                    return;
-                }
+                        if (userName == "" || password == "")
+                            return;
 
-                // user name and password are correct
-                else {
-                    console.log('pswrd and userName are correct');
+                        // event.preventDefault();
 
-                    // save the user details in local storage
-                    // store, a JS object as JSON string, in local storage under the key "user"
-                    localStorage.setItem('user', JSON.stringify({ userName: userName, _id: userId }));
+                        let userArray = this.userRepository.users;
+                        let isExist = false;
+                        let pswdFromDB;
+                        let userId;
+                        //check if user name exists in db
+                        for (let i = 0; i < userArray.length; i++) {
+                            if (userArray[i].userName === userName) {
+                                isExist = true;
+                                pswdFromDB = userArray[i].password;
+                                userId = userArray[i]._id;
+                                break;
+                            }
+                        }
+                        console.log(' user name exist : ' + isExist);
 
-                    // set the user name
-                    console.log('set user name in Hello...');
-                    $('.helloUser').html(`Hello ${userName}`);
+                        if (!isExist) {
+                            // alert("This user name is NOT exists in db");
+                            $('#nameError').removeClass('d-none');
+                            event.preventDefault();
+                            return;
+                        }
+
+                        else { // user name exists
+                            if (password != pswdFromDB) {
+                                // alert("Password is wrong!");
+                                $('#nameError').addClass('d-none');
+                                $('#pswdLogInError').removeClass('d-none');
+                                event.preventDefault();
+                                return;
+                            }
+
+                            // user name and password are correct
+                            else {
+                                console.log('pswrd and userName are correct');
+
+                                // save the user details in local storage
+                                // store, a JS object as JSON string, in local storage under the key "user"
+                                localStorage.setItem('user', JSON.stringify({ userName: userName, _id: userId }));
+
+                                // set the user name
+                                console.log('set user name in Hello...');
+                                $('.helloUser').html(`Hello ${userName}`);
 
 
 
-                    // event.preventDefault();
+                                // event.preventDefault();
 
-                }
-            }
+                            }
+                        }
+
+                        */
 
         });
     }

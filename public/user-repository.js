@@ -9,20 +9,20 @@ class UserRepository {
   //request all the users from the DB
   //in the success handler- populate the users array
   getUsers() {
-    return  $.ajax({
-          method: 'GET',
-          url: 'users',
-          dataType: 'json',
-          success: (users)=> {
-              console.log('in getUsers, users-array:');
-              console.log(users);
-              // set the users and the posts to array
-              this.users = users;
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-              console.log(textStatus);
-          }
-      });
+    return $.ajax({
+      method: 'GET',
+      url: 'users',
+      dataType: 'json',
+      success: (users) => {
+        console.log('in getUsers, users-array:');
+        console.log(users);
+        // set the users and the posts to array
+        this.users = users;
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
   }
 
   addUser(userName, password) {
@@ -49,6 +49,36 @@ class UserRepository {
     });
   }
 
+  check() {
+    return $.ajax({
+      method: 'POST',
+      url: '/login',
+      data: $('#formlogin').serialize(),
+      success: (response) => {
+        console.log(response); // "try something"
+
+        switch (response) {
+          case "passwordWrong":
+            $('#nameError').addClass('d-none');
+            $('#pswdLogInError').removeClass('d-none');
+            break;
+          case "userNotExist":
+            $('#nameError').removeClass('d-none');
+            break;
+          case "allGood":
+            return true;
+            // store, a JS object as JSON string, in local storage under the key "user"
+            // break;
+        }
+
+
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
+
+  }
 
   addPost() {
 
