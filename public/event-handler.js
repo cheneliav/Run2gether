@@ -119,11 +119,17 @@ class EventsHandler {
                     // store, a JS object as JSON string, in local storage under the key "user"
                     localStorage.setItem('user', JSON.stringify({ userName: userName, _id: userId }));
 
+
+                    // get our user from local storage and convert it back to a JS Object
+                    let user = JSON.parse(localStorage.getItem('user'))
+                    console.log(user.userName);
+
                     // set the user name
                     console.log('set user name in Hello...');
-                    $('.helloUser').html(`Hello ${userName}`);
+                    $('.helloUser').html(`Hello ${user.userName}`);
 
 
+                    window.location.href = "/postSearch.html";
 
                     // event.preventDefault();
 
@@ -134,8 +140,11 @@ class EventsHandler {
     }
 
     registerLoggedOut() {
-        // remove the user from the local storage
-        localStorage.removeItem('user');
+        $('#showHello').on('click', () => {
+            // remove the user from the local storage
+            localStorage.removeItem('user');
+        })
+
     }
 
     registerAddPost() {

@@ -39,8 +39,8 @@
                 User Name
                 <span class="req">*</span>
               </label>
-              <input type="text" id="userName"  required autocomplete="off" />
-              <span  class="d-none" id="usernameError">Username already exists. </span>
+              <input type="text" id="userName" required autocomplete="off" />
+              <span class="d-none" id="usernameError">Username already exists. </span>
 
             </div>
 
@@ -70,11 +70,11 @@
 
       <div id="login">
         <h1>Welcome Back!</h1>
-        <!-- <form action="./postSearch.html" id="formlogin"> -->
-        <form action="./postSearch.html" method="post" id="formlogin">
+        <!-- <form  id="formlogin"> -->
+        <!-- <form action="./postSearch.html" method="post" id="formlogin"> -->
         <!-- <form action="/logged" method="post" id="formlogin"> -->
         <!-- <form> -->
-
+        <div id="formlogin">
           <div class="top-row">
             <div class="field-wrap">
               <label>
@@ -82,7 +82,7 @@
                 <span class="req">*</span>
               </label>
               <input type="text" id="name" name="userName" required autocomplete="off" />
-              <span  class="d-none" id="nameError">Username does not exist. </span>
+              <span class="d-none" id="nameError">Username does not exist. </span>
 
             </div>
 
@@ -92,7 +92,7 @@
                 <span class="req">*</span>
               </label>
               <input type="password" id="pswdLogIn" name="password" required autocomplete="off" />
-              <span  class="d-none" id="pswdLogInError">Password is wrong. </span>
+              <span class="d-none" id="pswdLogInError">Password is wrong. </span>
             </div>
 
             <!-- <p class="remember">
@@ -103,8 +103,8 @@
             <!-- <button type="button" class="button button-block login">Log In</button> -->
 
           </div>
-
-        </form>
+        </div>
+        <!-- </form> -->
       </div>
 
     </div>
@@ -113,7 +113,7 @@
   <!-- /form -->
 
   <a href="postSearch.html">
-    <button type="button" >Log In</button>
+    <button type="button">Log In</button>
   </a>
 
 

@@ -61,11 +61,10 @@ app.post('/users', (req, res) => {
 // app.post('/try', move);
 // // app.post('/try', '/postSearch.html');
 
-app.post('/postSearch.html', (req, res) => {
-  console.log(req.body);
-
-  res.sendFile(__dirname+'/public/postSearch.html');
-});
+// app.post('/postSearch.html', (req, res) => {
+//   console.log(req.body);
+//   res.sendFile(__dirname+'/public/postSearch.html');
+// });
 
 //PORT
 const PORT = process.env.PORT || 8000;
