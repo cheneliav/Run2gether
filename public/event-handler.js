@@ -168,12 +168,10 @@ class EventsHandler {
 
     registerLoggedOut() {
         // remove the user from the local storage
-        localStorage.removeItem('user');
+        //localStorage.removeItem('user');
     }
 
-    registerAddPost() {
-
-    }
+  
 
 
 }
