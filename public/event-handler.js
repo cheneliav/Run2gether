@@ -85,6 +85,8 @@ class EventsHandler {
         $('#loggedOut').on('click', () => {
             // remove the user from the local storage
             localStorage.removeItem('user');
+            console.log('remove from local storgae');
+
         })
     }
 
