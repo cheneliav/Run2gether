@@ -37,6 +37,12 @@ class UserRepository {
         this.users.push(newUser);
         console.log('users array after new user signup:');
         console.log(this.users);
+
+        // show success message
+        let x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
