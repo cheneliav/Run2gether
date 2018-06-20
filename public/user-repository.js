@@ -25,26 +25,6 @@ class UserRepository {
       });
   }
 
-  addUser(userName, password) {
-    console.log('in AddUser:');
-
-    return $.ajax({
-      method: 'POST',
-      url: '/users',
-      data: { userName: userName, password: password, posts: [] },
-      //After a new post has been created in the DB it should be returned to the client
-      success: (newUser) => {
-        // adding the user to users array
-        this.users.push(newUser);
-
-        console.log('users array:');
-        console.log(this.users);
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        console.log(textStatus);
-      }
-    });
-  }
 
   addPost(gender, address, city, depTime, distance, training) {
     let postObj= { 
