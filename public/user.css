@@ -89,11 +89,7 @@ label .req {
 }
 
 label.active {
-<<<<<<< HEAD
-  transform: translateY(50px);
-=======
   transform: translateY(-24px);
->>>>>>> 1523a64ef72d6653bd7bbb9d8a59d3e2728e560c
   left: 2px;
   font-size: 14px;
 }
