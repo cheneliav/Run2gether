@@ -33,8 +33,9 @@ app.get('/users', (req, res) => {
 // 2) to handle adding a user
 //When requested by a client, the route needs to take the data supplied by the client and from it create a new user.
 app.post('/users', (req, res) => {
+  console.log(req.body);
   var newUserDB = new User(req.body);
-  // this create an _id to the  new user
+  // this save in db and create an _id to the new user
   newUserDB.save((err, post) => {
     if (err)
       throw err;
@@ -48,21 +49,19 @@ function userMiddleware(req, res, next) {
   User.find(function (error, users) {
     if (error)
       throw error;
-    // console.log(users); //log here in the console all the users
     req.userArray = users;
     next();
   });
 };
 
-// app.post('/login', (req, res) => {
 app.post('/login', userMiddleware, (req, res) => {
   console.log('body:');
-  let = req.body;
-  console.log(req.body); // user and password from the Form
+  console.log(req.body); // user and password from the login-Form
   console.log(req.userArray); // user array
 
   //check if user name exists in db
   let pswdFromDB, userId;
+  let isExist = false;
   for (let i = 0; i < req.userArray.length; i++) {
     if (req.userArray[i].userName === req.body.userName) {
       isExist = true;
@@ -76,31 +75,46 @@ app.post('/login', userMiddleware, (req, res) => {
   if (!isExist) {
     res.send("userNotExist");
   }
-
   else { // user name exists
+    //password is wrong
     if (req.body.password != pswdFromDB) {
       res.send("passwordWrong");
     }
-
     else {
-      res.send("allGood");
+      // res.send("allGood");
+      res.send({ name: req.body.userName, id: userId });
     }
   }
-
-
-  res.send('try something');
 });
 
+app.post('/signup', userMiddleware, (req, res) => {
+  console.log('body:');
+  console.log(req.body); // user and passwords from the sigup-Form
+  console.log(req.userArray); // user array
 
-// app.post('/postSearch.html', (req, res) => {
-//   console.log(req.body);
-//   // maybe use this option in sign up- in order to save in db this details ?
-//   console.log(req.body.userName);
-//   console.log(req.body.password);
-//   console.log('in app.post /postSearch.html');
+  //check if username already exists in db
+  let isExist = false;
+  for (let i = 0; i < req.userArray.length; i++) {
+    if (req.userArray[i].userName === req.body.userName) {
+      isExist = true;
+      break;
+    }
+  }
+  console.log(' user name exist : ' + isExist);
 
-//   res.sendFile(__dirname+'/public/postSearch.html');
-// });
+  if (isExist) {
+    res.send("userExist");
+  }
+  else if (req.body.password != req.body.rePassword) {
+      res.send("passwordWrong");
+    }
+    else {
+      // res.send("allGood");
+      res.send({ name: req.body.userName, password: req.body.password });
+    }
+
+});
+
 
 //PORT
 const PORT = process.env.PORT || 8000;

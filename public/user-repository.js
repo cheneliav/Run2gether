@@ -27,20 +27,15 @@ class UserRepository {
 
   addUser(userName, password) {
     console.log('in AddUser:');
-
-    // maybe do here http GET (so in server i will check validation of pswd and username )
-    //and in the "then." do a http POST after the pswrd and username are valid
-
-    return $.ajax({
+    $.ajax({
       method: 'POST',
       url: '/users',
       data: { userName: userName, password: password, posts: [] },
-      //After a new post has been created in the DB it should be returned to the client
+      //After a new user has been created in the DB it should be returned to the client
       success: (newUser) => {
         // adding the user to users array
         this.users.push(newUser);
-
-        console.log('users array:');
+        console.log('users array after new user signup:');
         console.log(this.users);
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -49,40 +44,68 @@ class UserRepository {
     });
   }
 
-  check() {
+
+  SignUp() {
     return $.ajax({
       method: 'POST',
-      url: '/login',
-      data: $('#formlogin').serialize(),
+      url: '/signup',
+      data: $('#formsignup').serialize(),
       success: (response) => {
-        console.log(response); // "try something"
+        console.log(response);
 
         switch (response) {
+          case "userExist":
+            $('#usernameError').removeClass('d-none');
+            $('#pswrdNotSameError').addClass('d-none');
+            break;
           case "passwordWrong":
-            $('#nameError').addClass('d-none');
-            $('#pswdLogInError').removeClass('d-none');
+            $('#pswrdNotSameError').removeClass('d-none');
+          $('#usernameError').addClass('d-none');
             break;
-          case "userNotExist":
-            $('#nameError').removeClass('d-none');
+          default:
+            this.addUser(response.name, response.password);
+
             break;
-          case "allGood":
-            return true;
-            // store, a JS object as JSON string, in local storage under the key "user"
-            // break;
         }
-
-
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
       }
     });
-
   }
 
-  addPost() {
 
+  Login() {
+    return $.ajax({
+      method: 'POST',
+      url: '/login',
+      data: $('#formlogin').serialize(),
+      success: (response) => {
+        console.log(response);
+
+        switch (response) {
+          case "userNotExist":
+            $('#nameError').removeClass('d-none');
+            $('#pswdLogInError').addClass('d-none');
+            break;
+          case "passwordWrong":
+            $('#nameError').addClass('d-none');
+            $('#pswdLogInError').removeClass('d-none');
+            break;
+          default:
+            //store, a JS object as JSON string, in local storage under the key "user"
+            localStorage.setItem('user', JSON.stringify({ userName: response.name, id: response.id }));
+            //move to next page
+            window.location.href = "/postSearch.html";
+            break;
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
   }
+
 
 }
 
