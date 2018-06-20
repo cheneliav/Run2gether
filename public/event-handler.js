@@ -121,12 +121,12 @@ class EventsHandler {
 
 
                     // get our user from local storage and convert it back to a JS Object
-                    let user = JSON.parse(localStorage.getItem('user'))
-                    console.log(user.userName);
+                    // let user = JSON.parse(localStorage.getItem('user'))
+                    // console.log(user.userName);
 
-                    // set the user name
-                    console.log('set user name in Hello...');
-                    $('.helloUser').html(`Hello ${user.userName}`);
+                    // // set the user name
+                    // console.log('set user name in Hello...');
+                    // $('.helloUser').html(`Hello ${user.userName}`);
 
 
                     window.location.href = "/postSearch.html";
@@ -147,9 +147,6 @@ class EventsHandler {
 
     }
 
-    registerAddPost() {
-
-    }
 
 
 }

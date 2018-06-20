@@ -50,10 +50,6 @@ class UserRepository {
   }
 
 
-  addPost() {
-
-  }
-
 }
 
 export default UserRepository
