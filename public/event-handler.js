@@ -48,13 +48,18 @@ class EventsHandler {
 
             event.preventDefault();
         });
-}
+    }
 
 
     registerAddPost() {
         $('#post').on('click', (e) => {
 
             // e.preventDefault();
+            if ($('#myDistance :selected').val() == "")
+                return;
+
+            if ($('#myType :selected').val() == "")
+                return;
 
             let gender = $('input[name=gender]:checked').val();
             let address = $('#address').val();
@@ -65,28 +70,18 @@ class EventsHandler {
 
             // dont forget lat and lng
 
-            // get the userId from the local storage!!
+            this.userRepository.addPost(gender, address, city, depTime, distance, training);
+ /*          this.userRepository.addPost(gender, address, city, depTime, distance, training).then(() => {
+                e.preventDefault();
+              
+                console.log("added !!!!!!!!!!!");
+                $('#addedPost').html("greattttttt!");
 
-            if($('#myDistance :selected').val() !=""){
-            let distance = $('#myDistance :selected').text();
-            }
-
-
-             this.userRepository.addPost(gender, address, city, depTime, distance, training);
-           /*  this.userRepository.addPost(gender, address, city, time, distance, training).then(() => {
-                 console.log("added !!!!!!!!!!!");
-                 
-                 $('#addedPost').html("greattttttt!");
-            e.preventDefault();
-                 
             }).catch(() => { console.log('catch- error in adding user function'); });
 */
-            console.log("added !!!!!!!!!!!");
-            
+            // console.log("added !!!!!!!!!!!");
+
             e.preventDefault();
-
-            
-
         })
     }
 
