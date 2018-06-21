@@ -70,8 +70,6 @@ class EventsHandler {
             let latitude = $('#lat').val();
             let longitude = $('#lng').val();
 
-            // dont forget lat and lng
-
             this.userRepository.addPost(gender, address, city, depTime, distance, training);
  /*          this.userRepository.addPost(gender, address, city, depTime, distance, training).then(() => {
                 e.preventDefault();
