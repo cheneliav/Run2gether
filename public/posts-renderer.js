@@ -8,15 +8,17 @@ class PostsRenderer {
     this.$postTemplate = $('#post-template').html();
   }
 
-  renderPosts(posts) {
+  renderPosts(posts ) {
     console.log('in renderPosts');
-
+    console.log(posts);
     this.$posts.empty();
+    console.log(posts.length);
     let template = Handlebars.compile(this.$postTemplate);
     for (let i = 0; i < posts.length; i++) {
       let newHTML = template(posts[i]);
-      //   console.log(newHTML);
+         console.log(newHTML);
       this.$posts.append(newHTML);
+      // this.$posts.append('<p>dwsnsa</p>');
     }
   }
 

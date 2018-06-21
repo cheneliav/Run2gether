@@ -4,7 +4,7 @@
 class UserRepository {
   constructor() {
     this.users = [];
-    this.searchResults = [];
+    this.posts = [];
   }
 
   //request all the users from the DB
@@ -73,17 +73,20 @@ class UserRepository {
 
   // document.write(query);
 
+console.log('in search');
 
-   console.log(searchCity);
-   alert(query);
+   console.log(query);
     return  $.ajax({
       method: 'GET',
       url: '/posts?'+ query,
       dataType: 'json',
-      success: (searchResults)=> {
+      success: (posts)=> {
 
           // add the posts to array
-          this.searchResults = searchResults;
+          this.posts = posts;
+          
+          console.log( "this.posts:");
+          console.log( this.posts);
       },
       error: function (jqXHR, textStatus, errorThrown) {
           console.log(textStatus);

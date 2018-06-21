@@ -17,163 +17,10 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3   postForm float-right">
-
-        <form>
-
-          <div class="form-group input-group">
-
-            <div class="input-group-prepend">
-
-              <i class="fa fa-user input-group-text" style="width: 46px;"></i>
-
-            </div>
-
-            <input name="" class="form-control" placeholder="Name" type="text">
-
-          </div>
-
-          <!-- form-group// -->
-
-          <div class="form-group input-group">
-
-            <div class="input-group-prepend">
-
-              <span class="input-group-text">
-
-                <i class="fa fa-male"></i>
-
-                <i class="fa fa-female"></i>
-
-              </span>
-
-            </div>
-
-            <!-- <span class="input-group-text"> Gender </span> -->
-
-            <div class="form-control">
-
-              <span>male </span>
-
-              <input type="radio" id="male" name="gender">
-
-              <span>female </span>
-
-              <input type="radio" id="female" name="gender">
-
-            </div>
-
-          </div>
-
-          <div class="form-group input-group">
-
-            <div class="input-group-prepend">
-
-              <i class="fa fa-map-marker input-group-text" style="width: 46px;"></i>
-
-            </div>
-
-            <input type="text" class="form-control" name="name" id="search" placeholder="Address">
-
-          </div>
-
-          <div class="form-group input-group">
-
-            <div class="input-group-prepend">
-
-              <i class="fa fa-map-marker input-group-text" style="width: 46px;"></i>
-
-            </div>
-
-            <input type="text" class="form-control" name="locality" id="city" placeholder="City">
-
-          </div>
-
-          <div class="form-group input-group">
-
-            <div class="input-group-prepend">
-
-              <i class="fa fa-hourglass-start input-group-text" style="width: 46px;"></i>
-
-            </div>
-
-            <input name="" class="form-control" placeholder="Departure time" type="text">
-
-          </div>
-
-          <div class="form-group input-group">
-
-            <div class="input-group-prepend">
-
-              <span class="input-group-text">
-
-                <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/14382-200.png" style="width: 18.5px;">
-
-              </span>
-
-            </div>
-
-            <!-- <select class="custom-select"> -->
-
-            <select class="form-control">
-
-              <option selected="">Select distance</option>
-
-              <option value="1">0-2 Km</option>
-
-              <option value="2">2-5 Km</option>
-
-              <option value="3">5-10 Km</option>
-
-            </select>
-
-          </div>
-
-          <div class="form-group input-group">
-
-            <div class="input-group-prepend">
-
-              <span class="input-group-text">
-
-                <!-- <i class="fas fa-walking"></i> -->
-
-                <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/19727-200.png" style="width: 18.5px;">
-
-              </span>
-
-            </div>
-
-            <select class="form-control">
-
-              <option selected="">Select training type</option>
-
-              <option value="1">Walking</option>
-
-              <option value="2">Running</option>
-
-            </select>
-
-          </div>
-
-          <!-- lat and lng -->
-          <div class="form-group">
-            <input type="text" class="form-control hide" name="lat" id="lat" placeholder="Latitude" readonly>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control hide" name="lng" id="lng" placeholder="Longitude" readonly>
-          </div>
-
-
-          <input type="button" value="POST!">
-
-        </form>
-
-
-
-      </div>
+     
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
       <div class="col-md-6 col-md-offset-3 searchForm float-left ">
-        <form>
+        <form id="property2">
 
           <div class="form-group input-group">
 
@@ -183,7 +30,7 @@
 
             </div>
 
-            <input type="text" class="form-control search-address" name="name" id="search" placeholder="Address">
+            <input type="text" class="form-control search-address" name="name" id="search2" placeholder="Address">
 
           </div>
 
@@ -195,7 +42,7 @@
 
             </div>
 
-            <input type="text" class="form-control search-city" name="locality" id="city" placeholder="City">
+            <input type="text" class="form-control search-city" name="locality" id="city" placeholder="City" readonly>
 
           </div>
 
@@ -217,7 +64,7 @@
 
             <select class="form-control search-distance">
 
-              <option value="0">Select distance</option>
+              <option value="">Select distance</option>
 
               <option value="1">0-2 Km</option>
 
@@ -245,7 +92,7 @@
 
             <select class="form-control search-training">
 
-              <option value="0">Select training type</option>
+              <option value="">Select training type</option>
 
               <option value="1">Running</option>
 
@@ -272,34 +119,32 @@
     </div>
 
 
-    <div class="posts"></div>
-
+    <div class="posts">
+     
+    </div>
 
     <script id="post-template" type="text/x-handlebars-template">
-    <div class="post" data-id="{{_id}}" data-idUser="{{idUser}}">
-
-      <i class="fa fa-trash remove-post"></i>
-
-     </div>
-
-</script>
+      <div class="post" data-id="{{_id}}">  <a class="toggle-contact" href="#"> contact </a>
+          <button type="button" class="btn btn-danger remove-post">Remove Post</button>
+      </div>
+  </script>
 
     <script src="jquery/dist/jquery.js"></script>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe49cNLpJ7eFgA2QJ3gJRhNi2WQRE3kyM&libraries=places"></script>
 
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/20625/jquery.geocomplete.min.js"></script>
 
-    <!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/20625/jquery.geocomplete.min.js"></script> -->
-
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmLOl094Ko9FiCPESOZWJ4Id5vS5PtIw8&libraries=places"></script> -->
 
     <script>
-//   $(document).ready(function(){
-//   // Call Geo Complete
-//   $("#search").geocomplete({details:"form#property"});
+  $(document).ready(function(){
+  // Call Geo Complete
+  $("#search1").geocomplete({details:"form#property1"});
 // });
-
+  $("#search2").geocomplete({details:"form#property2"});
+});
     </script>
 
 

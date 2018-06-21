@@ -67,23 +67,23 @@ class EventsHandler {
 
             let searchCity = $(".search-city").val();
 
-            let searchDistance = 0;
-            if ($(".search-distance :selected").val() != 0){
+            let searchDistance = "";
+            if ($(".search-distance :selected").val() != ""){
                  searchDistance = $(".search-distance :selected").text();
             }
 
-            let searchTraining = 0;
-            alert($(".search-distance :selected").val());
-            if ($(".search-distance :selected").val() != 0){
+            let searchTraining = "";
+            if ($(".search-training :selected").val() != ""){
                 searchTraining = $(".search-training :selected").text();
            }
            
-           this.userRepository.searchPosts(searchCity, searchDistance, searchTraining);
+           this.userRepository.searchPosts(searchCity, searchDistance, searchTraining).then(() => {
+             this.postsRenderer.renderPosts(this.userRepository.posts);
+        });
         });
     }
 
 
-
+    
 }
-
 export default EventsHandler
