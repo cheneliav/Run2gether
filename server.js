@@ -43,6 +43,16 @@ app.post('/users', (req, res) => {
   });
 });
 
+// 3) to handle adding a post
+app.post('/users/:id/posts', (req, res) => {
+  console.log(req.body);
+  User.findByIdAndUpdate(req.params.id, {$push: {"posts": req.body}}, {new: true},(error,user) => {
+    if (error){
+      throw error;
+    }
+    res.send(user);   
+  });  
+});
 
 // set users array in req
 function userMiddleware(req, res, next) {

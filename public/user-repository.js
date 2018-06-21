@@ -116,7 +116,6 @@ class UserRepository {
   addPost(gender, address, city, depTime, distance, training) {
     let user = JSON.parse(localStorage.getItem('user'));
 
-
     let postObj = {
       gender: gender,
       city: city,
@@ -124,33 +123,24 @@ class UserRepository {
       trainingType: training,
       distance: distance,
       departureTime: depTime,
-      idUser: user._id,
+      idUser: user.id,
       location: { lat: "12", lng: "123" }
     };
 
-    // find index of user
+   $.ajax({
+      method: 'post',
+      url: '/users/' + user.id + '/posts',
+      data: postObj,
+      success: (post) => {
+          console.log("The post after adding to the logged user :");
+          console.log(post);
+          $('#addedPost').html("greattttttt!");
 
-    // dummy input
-    this.users.push({ userName: "batya", password: "123", posts: [] })
-
-    // get our user from local storage and convert it back to a JS Object
-    console.log("user locall:");
-    console.log(user);
-
-    // return the index of the exist user name in  user array
-    // otherwise- return -1
-    // var index = this.users.findIndex(function (e) {
-    //   // return (user.userName === e.userName)
-    //   if (user.userName === e.userName){
-    //     break;
-    //   }
-    // });
-
-    // console.log(index);
-
-    // this.users[index].posts.push(postObj);
-    this.users[1].posts.push(postObj);
-    console.log(this.users);
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+          console.log(textStatus);
+      }
+  });
 
   }
 
