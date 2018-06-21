@@ -114,13 +114,17 @@ class UserRepository {
 
 
   addPost(gender, address, city, depTime, distance, training) {
+    let user = JSON.parse(localStorage.getItem('user'));
+
+
     let postObj = {
+      gender: gender,
       city: city,
       street: address,
       trainingType: training,
       distance: distance,
       departureTime: depTime,
-      idUser: "123",
+      idUser: user._id,
       location: { lat: "12", lng: "123" }
     };
 
@@ -129,15 +133,23 @@ class UserRepository {
     // dummy input
     this.users.push({ userName: "batya", password: "123", posts: [] })
 
-    // / return the index of the exist city name in cityWeatherArray
-    //  otherwise-(new city post) return -1
-    var index = this.users.findIndex(function (e) {
-      //  return (data.name === e.name)
-    });
+    // get our user from local storage and convert it back to a JS Object
+    console.log("user locall:");
+    console.log(user);
 
+    // return the index of the exist user name in  user array
+    // otherwise- return -1
+    // var index = this.users.findIndex(function (e) {
+    //   // return (user.userName === e.userName)
+    //   if (user.userName === e.userName){
+    //     break;
+    //   }
+    // });
 
+    // console.log(index);
 
-    this.users[0].posts.push(postObj);
+    // this.users[index].posts.push(postObj);
+    this.users[1].posts.push(postObj);
     console.log(this.users);
 
   }

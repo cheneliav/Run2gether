@@ -73,9 +73,19 @@ class EventsHandler {
 
 
              this.userRepository.addPost(gender, address, city, depTime, distance, training);
-            //  this.userRepository.addPost(gender, address, city, time, distance, training).then(() => {
-            // }).catch(() => { console.log('catch- error in adding user function'); });
+           /*  this.userRepository.addPost(gender, address, city, time, distance, training).then(() => {
+                 console.log("added !!!!!!!!!!!");
+                 
+                 $('#addedPost').html("greattttttt!");
+            e.preventDefault();
+                 
+            }).catch(() => { console.log('catch- error in adding user function'); });
+*/
+            console.log("added !!!!!!!!!!!");
+            
+            e.preventDefault();
 
+            
 
         })
     }
