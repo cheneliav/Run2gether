@@ -53,7 +53,6 @@ class EventsHandler {
 
     registerAddPost() {
         $('#post').on('click', (e) => {
-
             // e.preventDefault();
             if ($('#myDistance :selected').val() == "")
                 return;
