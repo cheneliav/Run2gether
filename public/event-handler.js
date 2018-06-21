@@ -1,60 +1,97 @@
 
 class EventsHandler {
-    // constructor(postsRepository, postsRenderer, userRepository) {
     constructor(postsRenderer, userRepository) {
         this.userRepository = userRepository;
-        // this.postsRepository = postsRepository;
         this.postsRenderer = postsRenderer;
         this.$posts = $(".posts");
         console.log('in constructor user');
-
     }
 
     /*=====================================================
-    add User
+    add User | sign up
     =======================================================*/
+
+
 
     registerAddUser() {
         $('.signup').on('click', (event) => {
-
-            // event.preventDefault();
-
             console.log('in registerAddUser event:');
 
             let userName = $("#userName").val();
             let password = $("#pswd").val();
             let repeatPassword = $("#repeatPswd").val();
 
-            if (userName == "" || password == "" || repeatPassword == "") {
+            if (userName == "" || password == "" || repeatPassword == "")
                 return;
-            }
+
+            // this.userRepository.SignUp().then(() => {
+            //     this.userRepository.addUser(userName, password);
+            // }).catch(() => { console.log('catch- error in adding user function'); });
+            this.userRepository.SignUp().catch(() => { console.log('catch- error in adding user function'); });
 
             event.preventDefault();
-
-            // check if the passwords are the same
-            // check this here or in the ajax or server ?
-            if (password !== repeatPassword) {
-                alert("passwords are not the same");
-            }
-
-            else
-            //TODO :
-            //check if user name is already exist in db !!!
-            {
-                let userObj = { userName, password };
-                this.userRepository.addUser(userName, password).then(() => {
-                    // save the user details in local storage- WHERE TO DO THAT ? here or in addUser success ?
-
-                    // move to postSearch.html page
-                    window.location.href = "/postSearch.html";
-                }).catch(() => { console.log('catch- error in adding user function'); });
-            }
-
         });
     }
 
-    registerAddPost(){
 
+    registerLogIn() {
+        $('.login').on('click', (event) => {
+            console.log('in login ');
+
+            let userName = $("#name").val();
+            let password = $("#pswdLogIn").val();
+
+            if (userName == "" || password == "")
+                return;
+
+            this.userRepository.Login();
+
+            event.preventDefault();
+        });
+    }
+
+
+    registerAddPost() {
+        $('#post').on('click', (e) => {
+            // e.preventDefault();
+            if ($('#myDistance :selected').val() == "")
+                return;
+
+            if ($('#myType :selected').val() == "")
+                return;
+
+            let gender = $('input[name=gender]:checked').val();
+            let address = $('#address').val();
+            let city = $('#city').val();
+            let depTime = $('#time').val();
+            let distance = $('#myDistance :selected').text();
+            let training = $('#myType :selected').text();
+            let latitude = $('#lat').val();
+            let longitude = $('#lng').val();
+
+            this.userRepository.addPost(gender, address, city, depTime, distance, training);
+ /*          this.userRepository.addPost(gender, address, city, depTime, distance, training).then(() => {
+                e.preventDefault();
+              
+                console.log("added !!!!!!!!!!!");
+                $('#addedPost').html("greattttttt!");
+
+            }).catch(() => { console.log('catch- error in adding user function'); });
+*/
+            // console.log("added !!!!!!!!!!!");
+
+            e.preventDefault();
+        })
+    }
+
+
+    registerLoggedOut() {
+        $('#loggedOut').on('click', () => {
+            // remove the user from the local storage
+            localStorage.removeItem('user');
+            console.log('remove from local storgae');
+
+        })
     }
 
     /*=====================================================

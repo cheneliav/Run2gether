@@ -1,0 +1,58 @@
+
+#usernameError, #pswrdNotSameError, #nameError, #pswdLogInError
+{
+  float: right;
+  color: white;
+}
+
+
+.description{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+/*=====================================================
+ snackbar after sign up
+=======================================================*/
+
+#snackbar {
+  visibility: hidden;
+  /* min-width: 250px; */
+  width: 307px;
+  background: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 23px;
+  padding: 16px;
+  z-index: 1;
+  font-size: 17px;
+  margin-left: 110px;
+  margin-top: 18px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}

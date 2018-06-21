@@ -15,10 +15,100 @@
 
 <body>
 
+
+  <div>
+    <span class="helloUser"></span>
+    <a href="index.html" id="loggedOut">Logged out</a>
+  </div>
+
   <div class="container">
     <div class="row">
-     
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
+      <div class="col-md-6 col-md-offset-3   postForm float-right">
+
+        <form id="property1">
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-male"></i>
+                <i class="fa fa-female"></i>
+              </span>
+            </div>
+
+            <div class="form-control">
+              <span>male </span>
+              <input type="radio" value="male" name="gender" required>
+              <span>female </span>
+              <input type="radio" value="female" name="gender">
+            </div>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <i class="fa fa-map-marker input-group-text" style="width: 46px;"></i>
+            </div>
+            <input type="text" class="form-control" name="name" id="address" placeholder="Address" required>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <i class="fa fa-map-marker input-group-text" style="width: 46px;"></i>
+            </div>
+            <input type="text" class="form-control" name="locality" id="city" placeholder="City" required>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <i class="fa fa-hourglass-start input-group-text" style="width: 46px;"></i>
+            </div>
+            <input name="" class="form-control" id="time" placeholder="Departure time" type="text" required>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/14382-200.png" style="width: 18.5px;">
+              </span>
+            </div>
+
+
+            <select class="form-control" id="myDistance" required>
+              <option value="">Select distance</option>
+              <option value="1">0-2 Km</option>
+              <option value="2">2-5 Km</option>
+              <option value="3">5-10 Km</option>
+            </select>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <!-- <i class="fas fa-walking"></i> -->
+                <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/19727-200.png" style="width: 18.5px;">
+              </span>
+            </div>
+            <select class="form-control" id="myType" required>
+              <option value="">Select training type</option>
+              <option value="1">Walking</option>
+              <option value="2">Running</option>
+            </select>
+
+          </div>
+
+          <!-- lat and lng -->
+          <div class="form-group">
+            <input type="text" class="form-control d-none" name="lat" id="lat" placeholder="Latitude" readonly>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control d-none" name="lng" id="lng" placeholder="Longitude" readonly>
+          </div>
+
+
+          <input type="submit" value="POST!" id="post">
+          <span id="addedPost"></span>
+        </form>
+      </div>
+
       <div class="col-md-6 col-md-offset-3 searchForm float-left ">
         <form id="property2">
 
@@ -103,25 +193,25 @@
           </div>
 
           <!-- lat and lng -->
-          <!-- <div class="form-group">
-            <input type="text" class="form-control hide" name="lat" id="lat" placeholder="Latitude" readonly>
+          <div class="form-group">
+            <input type="text" class="form-control d-none" name="lat" id="lat" placeholder="Latitude" readonly>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control hide" name="lng" id="lng" placeholder="Longitude" readonly>
-          </div> -->
+            <input type="text" class="form-control d-none" name="lng" id="lng" placeholder="Longitude" readonly>
+          </div>
 
           <button type="submit" class="button button-block searchBtn">SEARCH!</button>
 
         </form>
 
-
       </div>
+
     </div>
 
+    <div class="posts"></div>
 
-    <div class="posts">
-     
-    </div>
+
+
 
     <script id="post-template" type="text/x-handlebars-template">
       <div class="post" data-id="{{_id}}">  <a class="toggle-contact" href="#"> contact </a>
@@ -139,12 +229,20 @@
 
 
     <script>
-  $(document).ready(function(){
-  // Call Geo Complete
-  $("#search1").geocomplete({details:"form#property1"});
-// });
-  $("#search2").geocomplete({details:"form#property2"});
-});
+      $(document).ready(function () {
+        // Call Geo Complete
+        $("#address").geocomplete({ details: "form#property1" });
+        // });
+        $("#search2").geocomplete({ details: "form#property2" });
+
+        let user = JSON.parse(localStorage.getItem('user'));
+        if (user != null) {
+          console.log(user.userName);
+          // set the user name
+          console.log('set user name in Hello...');
+          $('.helloUser').html(`Hello ${user.userName}`);
+        }
+      });
     </script>
 
 

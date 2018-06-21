@@ -11,16 +11,13 @@ let eventsHandler = new EventsHandler(postsRenderer, userRepository);
 console.log('im in main');
 
 // get all the users
-// in order to check if user already exist in db
+// in order to check if user exist or not in db
 userRepository.getUsers();
 
-console.log('users array');
-console.log( userRepository.users);
-
-
-
-
 eventsHandler.registerAddUser();
+eventsHandler.registerLogIn();
+
+eventsHandler.registerLoggedOut();
 eventsHandler.registerAddPost();
 eventsHandler.registerSearch();
 
