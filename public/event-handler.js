@@ -67,6 +67,8 @@ class EventsHandler {
             let depTime = $('#time').val();
             let distance = $('#myDistance :selected').text();
             let training = $('#myType :selected').text();
+            let latitude = $('#lat').val();
+            let longitude = $('#lng').val();
 
             // dont forget lat and lng
 
