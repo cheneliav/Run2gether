@@ -94,9 +94,33 @@ class EventsHandler {
         })
     }
 
+    /*=====================================================
+    search
+    =======================================================*/
 
+    registerSearch() {
+        $('.searchBtn').on('click', (event) => {
+            event.preventDefault();
+
+            let searchCity = $(".search-city").val();
+
+            let searchDistance = "";
+            if ($(".search-distance :selected").val() != ""){
+                 searchDistance = $(".search-distance :selected").text();
+            }
+
+            let searchTraining = "";
+            if ($(".search-training :selected").val() != ""){
+                searchTraining = $(".search-training :selected").text();
+           }
+           
+           this.userRepository.searchPosts(searchCity, searchDistance, searchTraining).then(() => {
+             this.postsRenderer.renderPosts(this.userRepository.posts);
+        });
+        });
+    }
+
+
+    
 }
-
-
 export default EventsHandler
-

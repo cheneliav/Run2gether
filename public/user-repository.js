@@ -4,6 +4,7 @@
 class UserRepository {
   constructor() {
     this.users = [];
+    this.posts = [];
   }
 
   //request all the users from the DB
@@ -112,6 +113,36 @@ class UserRepository {
     });
   }
 
+  searchPosts(searchCity, searchDistance, searchTraining) {
+
+    let params = {
+      city: searchCity,
+      distance: searchDistance,
+      training: searchTraining
+    };
+    let query = $.param(params);
+
+    // document.write(query);
+
+    console.log('in search');
+
+    console.log(query);
+    return $.ajax({
+      method: 'GET',
+      url: '/posts?' + query,
+      dataType: 'json',
+      success: (posts) => {
+
+        // add the posts to array
+        this.posts = posts;
+
+        console.log("this.posts:");
+        console.log(this.posts);
+
+      }
+    });
+  }
+
 
   addPost(gender, address, city, depTime, distance, training) {
     let user = JSON.parse(localStorage.getItem('user'));
@@ -127,23 +158,22 @@ class UserRepository {
       location: { lat: "12", lng: "123" }
     };
 
-   $.ajax({
+    $.ajax({
       method: 'post',
       url: '/users/' + user.id + '/posts',
       data: postObj,
       success: (post) => {
-          console.log("The post after adding to the logged user :");
-          console.log(post);
-          $('#addedPost').html("greattttttt!");
+        console.log("The post after adding to the logged user :");
+        console.log(post);
+        $('#addedPost').html("greattttttt!");
 
       },
       error: function (jqXHR, textStatus, errorThrown) {
-          console.log(textStatus);
+        console.log(textStatus);
       }
-  });
+    });
 
   }
-
 
 }
 
