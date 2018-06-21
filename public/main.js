@@ -17,9 +17,6 @@ userRepository.getUsers();
 eventsHandler.registerAddUser();
 eventsHandler.registerLogIn();
 
-// let userObj=JSON.parse(localStorage.getItem('user'));
-// $('.helloUser').text(`Hello ${userObj.userName}`);
-
 eventsHandler.registerLoggedOut();
 eventsHandler.registerAddPost();
 

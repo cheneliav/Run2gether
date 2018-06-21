@@ -27,24 +27,91 @@ class UserRepository {
 
   addUser(userName, password) {
     console.log('in AddUser:');
-
-    return $.ajax({
+    $.ajax({
       method: 'POST',
       url: '/users',
       data: { userName: userName, password: password, posts: [] },
-      //After a new post has been created in the DB it should be returned to the client
+      //After a new user has been created in the DB it should be returned to the client
       success: (newUser) => {
         // adding the user to users array
         this.users.push(newUser);
-
-        console.log('users array:');
+        console.log('users array after new user signup:');
         console.log(this.users);
+
+        // show success message
+        let x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
       }
     });
   }
+
+
+  SignUp() {
+    return $.ajax({
+      method: 'POST',
+      url: '/signup',
+      data: $('#formsignup').serialize(),
+      success: (response) => {
+        console.log(response);
+
+        switch (response) {
+          case "userExist":
+            $('#usernameError').removeClass('d-none');
+            $('#pswrdNotSameError').addClass('d-none');
+            break;
+          case "passwordWrong":
+            $('#pswrdNotSameError').removeClass('d-none');
+            $('#usernameError').addClass('d-none');
+            break;
+          default:
+            this.addUser(response.name, response.password);
+
+            break;
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
+  }
+
+
+  Login() {
+    return $.ajax({
+      method: 'POST',
+      url: '/login',
+      data: $('#formlogin').serialize(),
+      success: (response) => {
+        console.log(response);
+
+        switch (response) {
+          case "userNotExist":
+            $('#nameError').removeClass('d-none');
+            $('#pswdLogInError').addClass('d-none');
+            break;
+          case "passwordWrong":
+            $('#nameError').addClass('d-none');
+            $('#pswdLogInError').removeClass('d-none');
+            break;
+          default:
+            //store, a JS object as JSON string, in local storage under the key "user"
+            localStorage.setItem('user', JSON.stringify({ userName: response.name, id: response.id }));
+            //move to next page
+            window.location.href = "/postSearch.html";
+            break;
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
+  }
+
 
   addPost(gender, address, city, depTime, distance, training) {
     let user = JSON.parse(localStorage.getItem('user'));
@@ -86,6 +153,7 @@ class UserRepository {
     console.log(this.users);
 
   }
+
 
 }
 
