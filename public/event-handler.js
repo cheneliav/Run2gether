@@ -90,12 +90,24 @@ class EventsHandler {
             
 
              this.userRepository.addPost(gender, address, city, depTime, distance, training);
-            //  this.userRepository.addPost(gender, address, city, time, distance, training).then(() => {
-            // }).catch(() => { console.log('catch- error in adding user function'); });
+           /*  this.userRepository.addPost(gender, address, city, time, distance, training).then(() => {
+                 console.log("added !!!!!!!!!!!");
+                 
+                 $('#addedPost').html("greattttttt!");
+            e.preventDefault();
+                 
+            }).catch(() => { console.log('catch- error in adding user function'); });
+*/
+            console.log("added !!!!!!!!!!!");
+            
+            e.preventDefault();
 
+            
 
         })
     }
+
+
     registerLogIn() {
         $('.login').on('click', (event) => {
             console.log('in login ');
@@ -155,7 +167,7 @@ class EventsHandler {
 
 
                     // move to postSearch.html page
-                    // window.location.href = "/postSearch.html";
+                    window.location.href = "/postSearch.html";
                     // history.pushState(null, '', '/postSearch.html');
                     // window.location.replace("/postSearch.html");
                     // event.preventDefault();
@@ -168,11 +180,7 @@ class EventsHandler {
 
     registerLoggedOut() {
         // remove the user from the local storage
-        localStorage.removeItem('user');
-    }
-
-    registerAddPost() {
-
+       // localStorage.removeItem('user');
     }
 
 
