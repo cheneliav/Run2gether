@@ -1,16 +1,53 @@
-
-#usernameError, #pswrdNotSameError, #nameError, #pswdLogInError
-{
+#usernameError,
+#pswrdNotSameError,
+#nameError,
+#pswdLogInError {
   float: right;
   color: white;
 }
 
-
-.description{
+.description {
   font-family: "Comic Sans MS", cursive, sans-serif;
   font-size: 25px;
   font-weight: 400;
 }
+
+#property1, #property2{
+  width: 300px !important;
+}
+
+.container-fluid{
+  padding-right: 40px;
+}
+
+.row{
+  /* margin-left: 25px; */
+margin-top: 55px;
+}
+
+.input-group-text {
+  color: black;
+}
+
+.post-search-background {
+  background: url('background-run.jpg') no-repeat fixed;
+  background-size: cover;
+}
+
+.fa-map-marker,
+.fa-hourglass-start {
+  width: 46px;
+}
+
+.distance-icon,
+.man-run-icon {
+  width: 18.5px;
+}
+
+#flipSearchForm, #flipPostForm{
+
+}
+
 
 /*=====================================================
  snackbar after sign up
@@ -38,21 +75,45 @@
 }
 
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
