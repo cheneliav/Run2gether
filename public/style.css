@@ -14,6 +14,7 @@
 
 #property1, #property2{
   width: 300px !important;
+  display: none;
 }
 
 .container-fluid{
