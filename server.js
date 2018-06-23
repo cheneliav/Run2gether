@@ -62,12 +62,12 @@ app.post('/users', (req, res) => {
 // 3) to handle adding a post
 app.post('/users/:id/posts', (req, res) => {
   console.log(req.body);
-  User.findByIdAndUpdate(req.params.id, {$push: {"posts": req.body}}, {new: true},(error,user) => {
-    if (error){
+  User.findByIdAndUpdate(req.params.id, { $push: { "posts": req.body } }, { new: true }, (error, user) => {
+    if (error) {
       throw error;
     }
-    res.send(user);   
-  });  
+    res.send(user);
+  });
 });
 
 // set users array in req
@@ -132,12 +132,12 @@ app.post('/signup', userMiddleware, (req, res) => {
     res.send("userExist");
   }
   else if (req.body.password != req.body.rePassword) {
-      res.send("passwordWrong");
-    }
-    else {
-      // res.send("allGood");
-      res.send({ name: req.body.userName, password: req.body.password });
-    }
+    res.send("passwordWrong");
+  }
+  else {
+    // res.send("allGood");
+    res.send({ name: req.body.userName, password: req.body.password });
+  }
 
 });
 
@@ -145,39 +145,26 @@ app.post('/signup', userMiddleware, (req, res) => {
 
 app.get('/posts', (req, res) => {
 
-    let city =req.query.city;
-    let distance =req.query.distance;
-    let training =req.query.training; 
-    // let findQuery = {};
-    // if (req.query.city) {
-    //   findQuery.city = req.query.city;
-    // }
-    // if ( req.query.distance) {
-    //   findQuery.distance = req.query.distance;
-    // }
-    // if ( req.query.training) {
-    //   findQuery.training = req.query.training;
-    // }
+  let city = req.query.city;
+  let distance = req.query.distance;
+  let training = req.query.training;
 
-    // // findQuery = { city: "tel aviv", distance: 5 }
-    // console.log(findQuery);
-    // User.find({ 'posts': { $elemMatch: { 'city': req.query.city, 'trainingType': req.query.training, 'distance': req.query.distance} } }).populate('posts').exec(function (error, posts) {
-    User.find().exec(function (error, users) {
+  User.find().exec(function (error, users) {
     if (error)
-      throw error; 
-      let postsResult =[];
-      for (var i = 0; i < users.length; i++) {
-        for (var j= 0; j < users[i].posts.length; j++) {
+      throw error;
+    let postsResult = [];
+    for (var i = 0; i < users.length; i++) {
+      for (var j = 0; j < users[i].posts.length; j++) {
         // console.log(users[i].posts[j]);
-        if((users[i].posts[j].city===city||!city)  &(users[i].posts[j].distance===distance||!distance) &(users[i].posts[j].training===training||!training)){
+        if ((users[i].posts[j].city === city || !city) & (users[i].posts[j].distance === distance || !distance) & (users[i].posts[j].training === training || !training)) {
           postsResult.push(users[i].posts[j]);
         }
-        }
       }
-     console.log(postsResult); 
-    //log here in the console all the users
+    }
+    console.log(postsResult);
+
     res.send(postsResult);
- });
+  });
 });
 
 

@@ -144,7 +144,7 @@ class UserRepository {
   }
 
 
-  addPost(gender, address, city, depTime, distance, training) {
+  addPost(gender, address, city, depTime, distance, training, lat, lng) {
     let user = JSON.parse(localStorage.getItem('user'));
 
     let postObj = {
@@ -155,7 +155,7 @@ class UserRepository {
       distance: distance,
       departureTime: depTime,
       idUser: user.id,
-      location: { lat: "12", lng: "123" }
+      location: { lat: lat, lng: lng }
     };
 
     $.ajax({

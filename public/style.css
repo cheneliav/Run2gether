@@ -7,23 +7,51 @@
 }
 
 .description {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: Helvetica, Arial, Sans-Serif;
   font-size: 25px;
-  font-weight: 400;
+  font-weight: bold;
 }
 
-#property1, #property2{
+#property1,
+#property2 {
   width: 300px !important;
   display: none;
 }
 
-.container-fluid{
+.hello {
+  /* margin-left: 54px; */
+  font: bold 24px Helvetica, Arial, Sans-Serif;
+}
+
+.helloUser{
+  color: #980201;
+}
+
+#loggedOut {
+  font-size: 15px;
+  color: #bd4902;
+}
+
+.post {
+  box-shadow: 0px 0px 12px 0px black;
+  padding: 10px;
+  background-color: #ffecd1a8;
+  margin: 6px;
+  display: inline-table;
+}
+button[type="submit"] {
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+}
+
+.container-fluid {
   padding-right: 40px;
 }
 
-.row{
-  /* margin-left: 25px; */
-margin-top: 55px;
+.row {
+  margin-left: 35px;
+  margin-top: 55px;
 }
 
 .input-group-text {
@@ -45,10 +73,47 @@ margin-top: 55px;
   width: 18.5px;
 }
 
-#flipSearchForm, #flipPostForm{
-
+#flipSearchForm,
+#flipPostForm {
+  padding-bottom: 15px;
+  cursor: pointer;
+  color: #bd4902;
+  font: bold 42px Helvetica, Arial, Sans-Serif;
+  text-shadow: 1px 1px #48362f, 2px 2px #48362f, 3px 3px #48362f;
+  -webkit-transition: all 0.12s ease-out;
+  transition: all 0.12s ease-out;
 }
 
+#flipSearchForm:hover,
+#flipPostForm:hover {
+  position: relative;
+  cursor: pointer;
+  top: -3px;
+  left: -3px;
+  /* text-shadow: 1px 1px #fe4902, 2px 2px #fe4902, 3px 3px #fe4902, 4px 4px #fe4902, 5px 5px #fe4902, 6px 6px #fe4902; */
+  text-shadow: 1px 1px #48362f, 2px 2px #48362f, 3px 3px #48362f, 4px 4px #48362f, 5px 5px #48362f, 6px 6px #48362f;
+}
+
+.post-search-div, .post-icon, .search-icon {
+  display: flex;
+  /* justify-content: space-around; */
+  justify-content: center;
+}
+
+.search-icon,
+.post-icon {
+  font-size: 45px;
+  -webkit-transition: 0.6s ease-out;
+  -moz-transition: 0.6s ease-out;
+  transition: 0.6s ease-out;
+}
+
+.search-icon:hover,
+.post-icon:hover {
+  -webkit-transform: rotateZ(360deg);
+  -moz-transform: rotateZ(360deg);
+  transform: rotateY(360deg);
+}
 
 /*=====================================================
  snackbar after sign up

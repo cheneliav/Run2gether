@@ -66,19 +66,10 @@ class EventsHandler {
             let depTime = $('#time').val();
             let distance = $('#myDistance :selected').text();
             let training = $('#myType :selected').text();
-            let latitude = $('#lat').val();
-            let longitude = $('#lng').val();
+            let lat = $('#lat').val();
+            let lng = $('#lng').val();
 
-            this.userRepository.addPost(gender, address, city, depTime, distance, training);
- /*          this.userRepository.addPost(gender, address, city, depTime, distance, training).then(() => {
-                e.preventDefault();
-              
-                console.log("added !!!!!!!!!!!");
-                $('#addedPost').html("greattttttt!");
-
-            }).catch(() => { console.log('catch- error in adding user function'); });
-*/
-            // console.log("added !!!!!!!!!!!");
+            this.userRepository.addPost(gender, address, city, depTime, distance, training, lat, lng);
 
             e.preventDefault();
         })
@@ -113,14 +104,17 @@ class EventsHandler {
             if ($(".search-training :selected").val() != ""){
                 searchTraining = $(".search-training :selected").text();
            }
-           
+
            this.userRepository.searchPosts(searchCity, searchDistance, searchTraining).then(() => {
              this.postsRenderer.renderPosts(this.userRepository.posts);
+             $(".search-city").val("");
+             $(".search-address").val("");
+
         });
         });
     }
 
 
-    
+
 }
 export default EventsHandler

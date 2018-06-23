@@ -8,6 +8,7 @@ let locationSchema = new mongoose.Schema({
 });
 
 let postSchema = new mongoose.Schema({
+  gender: String,
   city: String,
   street: String,
   trainingType: String,

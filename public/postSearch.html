@@ -19,6 +19,14 @@
   <div class="container-fluid">
 
     <div class="row">
+      <div class="hello">
+        <span class="helloUser"></span>
+        <br>
+        <a href="index.html" id="loggedOut">Logged out</a>
+      </div>
+    </div>
+
+    <div class="row">
 
       <!-- posts result of search -->
       <div class="col-md-6">
@@ -27,14 +35,15 @@
       </div>
 
 
-      <div class="col-md-6">
+      <div class="col-md-6 ">
 
-        <div class="row">
+        <div class="row post-search-div">
           <!-- <div class="col-md-6 col-md-offset-3 postForm float-right"> -->
-            <h2 id="flipPostForm">Want to add post? </h2>
-            <br>
-            <br>
-          <form id="property1" class="col-md-6 col-md-offset-3 postForm float-right">
+
+          <h2 id="flipPostForm">Want to add post? </h2>
+          <!-- <i class="fa fa-telegram post-icon"></i> -->
+
+          <form id="property1" class="col-md-8 col-md-offset-3 postForm float-right">
 
             <!-- <h2 id="flipPostForm">Want to add post? </h2> -->
 
@@ -94,7 +103,6 @@
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">
-                  <!-- <i class="fas fa-walking"></i> -->
                   <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/19727-200.png" class="man-run-icon">
                 </span>
               </div>
@@ -115,25 +123,33 @@
             </div>
 
 
-            <button type="submit" class="button button-block" id="post">POST
-              <i class="fa fa-telegram"></i>
-            </button>
+            <!-- <button type="submit" -->
+
+              <!-- id="post"> -->
+            <!-- <i class="fa fa-telegram"></i> -->
+            <!-- <a type="submit"> -->
+                <!-- <i  class="fa fa-telegram post-icon" > -->
+<button type="submit" id ="post">
+    <i  class="fa fa-telegram post-icon" > </i>
+</button>
+                <!-- </i> -->
+
+            <!-- </a> -->
+            <!-- <i  class="fa fa-telegram post-icon" id="post"></i> -->
+            <!-- </button> -->
 
             <span id="addedPost"></span>
           </form>
           <!-- </div> -->
 
 
-          <br>
-          <br>
+
           <!-- **************************************** -->
 
           <!-- <div class="col-md-6 col-md-offset-3 searchForm float-left "> -->
-
-
-          <h2 id="flipSearchForm">Want to search your partner?</h2>
-
-          <form id="property2" class="col-md-6 col-md-offset-3 searchForm float-left ">
+          <h2 id="flipSearchForm">Want to search?</h2>
+          <!-- <i class="fa fa-search search-icon"></i> -->
+          <form id="property2" class="col-md-8 col-md-offset-3 searchForm float-left ">
 
             <!-- <h2 id="flipSearchForm">Want to search your partner?</h2> -->
 
@@ -141,7 +157,7 @@
               <div class="input-group-prepend">
                 <i class="fa fa-map-marker input-group-text"></i>
               </div>
-              <input type="text" class="form-control search-address" name="name" id="search2" placeholder="Address">
+              <input type="text" class="form-control search-address" name="address" id="search2" placeholder="Address">
             </div>
 
             <div class="form-group input-group">
@@ -182,12 +198,13 @@
               </select>
             </div>
 
-            <button type="submit" class="button button-block searchBtn">SEARCH
-              <i class="fa fa-search"></i>
-            </button>
+            <!-- <button type="submit" class="button button-block searchBtn">SEARCH -->
+            <!-- <i class="fa fa-search"></i> -->
+            <i class="fa fa-search search-icon searchBtn"></i>
+
+            <!-- </button> -->
 
           </form>
-
 
 
           <!-- </div> -->
@@ -202,12 +219,21 @@
 
 
 
-
-
   <script id="post-template" type="text/x-handlebars-template">
-    <div class="post" data-id="{{_id}}">
-      <a class="toggle-contact" href="#"> contact </a>
-      <button type="button" class="btn btn-danger remove-post">Remove Post</button>
+    <div class="post rounded" data-id="{{_id}}">
+      <i class="fa fa-times-circle remove-post float-right"></i>
+      <br>
+      <!-- <div class="float-left"> -->
+          <h6>gender: {{gender}} </h6>
+          <h6>street: {{street}} </h6>
+          <h6>city: {{city}} </h6>
+      <!-- </div> -->
+      <!-- <div class="float-right"> -->
+          <h6>Training type: {{trainingType}} </h6>
+          <h6>Distance: {{distance}} </h6>
+          <h6>Departure time: {{departureTime}} </h6>
+      <!-- </div> -->
+      <a class="contact" href="#"> Join Me! </a>
     </div>
   </script>
 
