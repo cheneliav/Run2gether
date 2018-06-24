@@ -1,6 +1,6 @@
 
 class EventsHandler {
-    constructor(postsRenderer, userRepository,messagesRenderer) {
+    constructor(postsRenderer, userRepository, messagesRenderer) {
         this.userRepository = userRepository;
         this.postsRenderer = postsRenderer;
         this.messagesRenderer = messagesRenderer;
@@ -23,7 +23,7 @@ class EventsHandler {
             let phone = $("#phone").val();
             let repeatPassword = $("#repeatPswd").val();
 
-            if (userName == "" || password == "" || repeatPassword == "" || phone== "")
+            if (userName == "" || password == "" || repeatPassword == "" || phone == "")
                 return;
 
             // this.userRepository.SignUp().then(() => {
@@ -98,29 +98,43 @@ class EventsHandler {
             let searchCity = $(".search-city").val();
 
             let searchDistance = "";
-            if ($(".search-distance :selected").val() != ""){
-                 searchDistance = $(".search-distance :selected").text();
+            if ($(".search-distance :selected").val() != "") {
+                searchDistance = $(".search-distance :selected").text();
             }
 
             let searchTraining = "";
-            if ($(".search-training :selected").val() != ""){
+            if ($(".search-training :selected").val() != "") {
                 searchTraining = $(".search-training :selected").text();
-           }
+            }
 
-           this.userRepository.searchPosts(searchCity, searchDistance, searchTraining).then(() => {
-             this.postsRenderer.renderPosts(this.userRepository.posts);
-             $(".search-city").val("");
-             $(".search-address").val("");
+            this.userRepository.searchPosts(searchCity, searchDistance, searchTraining).then(() => {
+                this.postsRenderer.renderPosts(this.userRepository.posts);
+                $(".search-city").val("");
+                $(".search-address").val("");
 
-        });
+            });
         });
     }
 
-registerGetPartners(){
-this.userRepository.getPartners().then(()=>{
-    this.messagesRenderer.renderMessages(this.userRepository.partners);
-})
-}
+    registerJoinMe() {
+        $('.posts').on('click', '.contact', () => {
+            let userIdPost = $(this).closest('.post').data('id');
+            let userName = JSON.parse(localStorage.getItem('user')).userName;
+            let phone = JSON.parse(localStorage.getItem('user')).phone;
+
+            console.log(userName);
+            console.log(phone);
+            console.log(userIdPost);
+
+            this.userRepository.joinMe(userIdPost, userName, phone);
+
+        });
+    }
+    registerGetPartners() {
+        this.userRepository.getPartners().then(() => {
+            this.messagesRenderer.renderMessages(this.userRepository.partners);
+        })
+    }
 
 }
 export default EventsHandler

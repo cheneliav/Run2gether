@@ -180,6 +180,25 @@ class UserRepository {
 
   }
 
+joinMe(userIdPost, userName, phone){
+
+  $.ajax({
+    method: 'post',
+    url: '/users/' + userIdPost + '/joinMe',
+    data: {name:userName ,phoneNum: phone},
+    success: (res) => {
+      console.log("The user{name, phone}:");
+      console.log(res);  
+
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.log(textStatus);
+    }
+  });
+
+
+}
+
 getPartners(){
 
     let userIdLocal = JSON.parse(localStorage.getItem('user')).id;
