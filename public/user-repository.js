@@ -184,7 +184,7 @@ getPartners(){
 
     let userIdLocal = JSON.parse(localStorage.getItem('user')).id;
 
-$.ajax({
+ return $.ajax({
   method: 'GET',
   url: '/users/'+ userIdLocal,
   success: function(partners) {
