@@ -28,6 +28,13 @@
       </div>
 
       <div id="snackbar2" class="float-right ">Your post was published successfully! </div>
+
+<!-- list of message  -->
+<div class="list-message">
+  here will be the posts
+
+</div>
+
     </div>
 
     <div class="row">
@@ -209,7 +216,7 @@
 
 
   <script id="post-template" type="text/x-handlebars-template">
-    <div class="post rounded" data-id="{{_id}}">
+    <div class="post rounded" data-id="{{idUser}}">
       <i class="fa fa-times-circle remove-post float-right"></i>
       <br>
       <h6>gender: {{gender}} </h6>
@@ -219,6 +226,13 @@
       <h6>Distance: {{distance}} </h6>
       <h6>Departure time: {{departureTime}} </h6>
       <a class="contact" href="#"> Join Me! </a>
+    </div>
+  </script>
+
+  <script id="list-template" type="text/x-handlebars-template">
+    <div class="message">
+    <h5>Username:{{name}} | Phone: {{phone}} </h5>
+    <!-- <h5> </h5> -->
     </div>
   </script>
 
@@ -266,6 +280,7 @@
       $("#flipPostForm").click(function () {
         $("#property1").slideToggle("slow");
       });
+
 
     });
   </script>

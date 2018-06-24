@@ -21,6 +21,7 @@ let postSchema = new mongoose.Schema({
 let userSchema = new mongoose.Schema({
   userName: { type: String, required: true },
   password: { type: String, required: true },
+  phone: String,
   posts: [postSchema]
 });
 

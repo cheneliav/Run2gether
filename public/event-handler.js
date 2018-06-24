@@ -1,8 +1,9 @@
 
 class EventsHandler {
-    constructor(postsRenderer, userRepository) {
+    constructor(postsRenderer, userRepository,messagesRenderer) {
         this.userRepository = userRepository;
         this.postsRenderer = postsRenderer;
+        this.messagesRenderer = messagesRenderer;
         this.$posts = $(".posts");
         console.log('in constructor user');
     }
@@ -19,9 +20,10 @@ class EventsHandler {
 
             let userName = $("#userName").val();
             let password = $("#pswd").val();
+            let phone = $("#phone").val();
             let repeatPassword = $("#repeatPswd").val();
 
-            if (userName == "" || password == "" || repeatPassword == "")
+            if (userName == "" || password == "" || repeatPassword == "" || phone== "")
                 return;
 
             // this.userRepository.SignUp().then(() => {
@@ -114,7 +116,11 @@ class EventsHandler {
         });
     }
 
-
+registerGetPartners(){
+this.userRepository.getPartners().then(()=>{
+    this.messagesRenderer.renderMessages(this.userRepository.partners);
+})
+}
 
 }
 export default EventsHandler
