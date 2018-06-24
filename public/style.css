@@ -36,10 +36,10 @@
   box-shadow: 0px 0px 12px 0px black;
   padding: 10px;
   background-color: #ffecd1a8;
-  margin: 6px;
+  margin: 5px;
   display: inline-table;
 }
-button[type="submit"] {
+#post{
   padding: 0;
   border-radius: 50%;
   border: 0;
@@ -66,6 +66,10 @@ button[type="submit"] {
 .fa-map-marker,
 .fa-hourglass-start {
   width: 46px;
+}
+
+.fa-sign-in{
+  font-size: 22px;
 }
 
 .distance-icon,

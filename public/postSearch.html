@@ -22,7 +22,9 @@
       <div class="hello">
         <span class="helloUser"></span>
         <br>
-        <a href="index.html" id="loggedOut">Logged out</a>
+        <a href="index.html" id="loggedOut">Logged out
+          <i class="fa fa-sign-in"></i>
+        </a>
       </div>
     </div>
 
@@ -38,14 +40,11 @@
       <div class="col-md-6 ">
 
         <div class="row post-search-div">
-          <!-- <div class="col-md-6 col-md-offset-3 postForm float-right"> -->
 
           <h2 id="flipPostForm">Want to add post? </h2>
           <!-- <i class="fa fa-telegram post-icon"></i> -->
 
           <form id="property1" class="col-md-8 col-md-offset-3 postForm float-right">
-
-            <!-- <h2 id="flipPostForm">Want to add post? </h2> -->
 
             <div class="form-group input-group">
               <div class="input-group-prepend">
@@ -123,20 +122,12 @@
             </div>
 
 
-            <!-- <button type="submit" -->
 
-              <!-- id="post"> -->
-            <!-- <i class="fa fa-telegram"></i> -->
-            <!-- <a type="submit"> -->
-                <!-- <i  class="fa fa-telegram post-icon" > -->
-<button type="submit" id ="post">
-    <i  class="fa fa-telegram post-icon" > </i>
-</button>
-                <!-- </i> -->
+            <button type="submit" id="post" class="post-icon">
+              <i class="fa fa-telegram post-icon"> </i>
+              <!-- <i class="fa fa-telegram-plane"></i> -->
+            </button>
 
-            <!-- </a> -->
-            <!-- <i  class="fa fa-telegram post-icon" id="post"></i> -->
-            <!-- </button> -->
 
             <span id="addedPost"></span>
           </form>
@@ -146,12 +137,10 @@
 
           <!-- **************************************** -->
 
-          <!-- <div class="col-md-6 col-md-offset-3 searchForm float-left "> -->
           <h2 id="flipSearchForm">Want to search?</h2>
           <!-- <i class="fa fa-search search-icon"></i> -->
           <form id="property2" class="col-md-8 col-md-offset-3 searchForm float-left ">
 
-            <!-- <h2 id="flipSearchForm">Want to search your partner?</h2> -->
 
             <div class="form-group input-group">
               <div class="input-group-prepend">
@@ -206,9 +195,6 @@
 
           </form>
 
-
-          <!-- </div> -->
-
         </div>
 
       </div>
@@ -223,16 +209,12 @@
     <div class="post rounded" data-id="{{_id}}">
       <i class="fa fa-times-circle remove-post float-right"></i>
       <br>
-      <!-- <div class="float-left"> -->
-          <h6>gender: {{gender}} </h6>
-          <h6>street: {{street}} </h6>
-          <h6>city: {{city}} </h6>
-      <!-- </div> -->
-      <!-- <div class="float-right"> -->
-          <h6>Training type: {{trainingType}} </h6>
-          <h6>Distance: {{distance}} </h6>
-          <h6>Departure time: {{departureTime}} </h6>
-      <!-- </div> -->
+      <h6>gender: {{gender}} </h6>
+      <h6>street: {{street}} </h6>
+      <h6>city: {{city}} </h6>
+      <h6>Training type: {{trainingType}} </h6>
+      <h6>Distance: {{distance}} </h6>
+      <h6>Departure time: {{departureTime}} </h6>
       <a class="contact" href="#"> Join Me! </a>
     </div>
   </script>
