@@ -27,12 +27,12 @@ class UserRepository {
     });
   }
 
-  addUser(userName, password) {
+  addUser(userName, password, phone) {
     console.log('in AddUser:');
     $.ajax({
       method: 'POST',
       url: '/users',
-      data: { userName: userName, password: password, posts: [] },
+      data: { userName: userName, password: password, phone: phone, posts: [] },
       //After a new user has been created in the DB it should be returned to the client
       success: (newUser) => {
         // adding the user to users array
@@ -71,7 +71,7 @@ class UserRepository {
             $('#usernameError').addClass('d-none');
             break;
           default:
-            this.addUser(response.name, response.password), response.phone;
+            this.addUser(response.name, response.password,  response.phone);
 
             break;
         }
@@ -103,6 +103,12 @@ class UserRepository {
           default:
             //store, a JS object as JSON string, in local storage under the key "user"
             localStorage.setItem('user', JSON.stringify({ userName: response.name, id: response.id, phone: response.phone }));
+
+    let user = JSON.parse(localStorage.getItem('user'));
+
+            console.log('user in local storge');
+            console.log(user);
+
             //move to next page
             window.location.href = "/postSearch.html";
             break;
@@ -180,41 +186,50 @@ class UserRepository {
 
   }
 
-joinMe(userIdPost, userName, phone){
+  joinMe(userIdPost, userName, phone) {
 
-  $.ajax({
-    method: 'post',
-    url: '/users/' + userIdPost + '/joinMe',
-    data: {name:userName ,phoneNum: phone},
-    success: (res) => {
-      console.log("The user{name, phone}:");
-      console.log(res);  
+   return $.ajax({
+      method: 'post',
+      url: '/users/' + userIdPost + '/joinMe',
+      data: { name: userName, phoneNum: phone },
+      success: (res) => {
+        console.log("The user{name, phone}:");
+        console.log(res);
+        // this.getPartners();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
 
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      console.log(textStatus);
-    }
-  });
 
-
-}
-
-getPartners(){
-
-    let userIdLocal = JSON.parse(localStorage.getItem('user')).id;
-
- return $.ajax({
-  method: 'GET',
-  url: '/users/'+ userIdLocal,
-  success: function(partners) {
-    console.log(partners);
-this.partners=partners;
-  },
-  error: function(jqXHR, textStatus, errorThrown) {
-    console.log(textStatus);
   }
-});
-}
+
+  getPartners() {
+
+    let user = JSON.parse(localStorage.getItem('user'));
+    if (user != null) {
+      let userIdLocal = user.id;
+
+      return $.ajax({
+        method: 'GET',
+        url: '/users/' + userIdLocal,
+        success: function (partners) {
+          console.log('partners array ?');
+          console.log(partners);
+          this.partners = partners;
+          console.log(this.partners);
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(textStatus);
+        }
+      });
+    }
+    else return new Promise(function (resolve, b) {
+      resolve(1);
+    })
+  }
 
 
 }

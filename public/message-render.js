@@ -9,7 +9,7 @@ class MessageRenderer {
   }
 
   renderMessages(messages) {
-    console.log('in renderPosts');
+    console.log('in render messages');
     console.log(messages);
     this.$list.empty();
     // console.log(posts.length);

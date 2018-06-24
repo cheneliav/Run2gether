@@ -16,8 +16,8 @@ console.log('im in main');
 // in order to check if user exist or not in db
 userRepository.getUsers();
 // userRepository.getPartners();
-eventsHandler.registerGetPartners();
-
+// eventsHandler.registerGetPartners();
+eventsHandler.registerJoinMe();
 eventsHandler.registerAddUser();
 eventsHandler.registerLogIn();
 

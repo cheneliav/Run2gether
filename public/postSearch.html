@@ -29,11 +29,11 @@
 
       <div id="snackbar2" class="float-right ">Your post was published successfully! </div>
 
-<!-- list of message  -->
-<div class="list-message">
-  here will be the posts
+      <!-- list of message  -->
+      <div class="list-message">
+        here will be the messages
 
-</div>
+      </div>
 
     </div>
 
@@ -231,7 +231,7 @@
 
   <script id="list-template" type="text/x-handlebars-template">
     <div class="message">
-    <h5>Username:{{name}} | Phone: {{phone}} </h5>
+    <h5>Username: {{name}} | Phone: {{phoneNum}} </h5>
     <!-- <h5> </h5> -->
     </div>
   </script>
@@ -246,7 +246,28 @@
 
   <script src="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
 
-  <script>
+
+
+  <script src="handlebars/dist/handlebars.js"></script>
+  <script src="main.js" type="module"></script>
+
+  <!-- <script type="module"> -->
+  <script >
+
+    // import PostsRenderer from './posts-renderer.js';
+    // import MessageRenderer from './message-render.js';
+    // import EventsHandler from './event-handler.js';
+    // import UserRepository from './user-repository.js';
+
+    // let userRepository = new UserRepository();
+    // let postsRenderer = new PostsRenderer();
+    // let messagesRenderer = new MessageRenderer();
+
+    // let eventsHandler = new EventsHandler(postsRenderer, userRepository, messagesRenderer);
+
+    //   console.log('im in inner script of postSearch.html');
+    //   eventsHandler.registerGetPartners();
+
     $(document).ready(function () {
       // inital the clock input
       let input = $('#time');
@@ -282,12 +303,12 @@
       });
 
 
+
+
+
     });
   </script>
 
-
-  <script src="handlebars/dist/handlebars.js"></script>
-  <script src="main.js" type="module"></script>
 
 </body>
 

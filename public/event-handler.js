@@ -117,8 +117,9 @@ class EventsHandler {
     }
 
     registerJoinMe() {
-        $('.posts').on('click', '.contact', () => {
-            let userIdPost = $(this).closest('.post').data('id');
+        // $('.posts').on('click', '.contact', function()  {
+        $('.posts').on('click', '.contact', (event)=>  {
+            let userIdPost = $(event.currentTarget).closest('.post').data('id');
             let userName = JSON.parse(localStorage.getItem('user')).userName;
             let phone = JSON.parse(localStorage.getItem('user')).phone;
 
@@ -126,7 +127,10 @@ class EventsHandler {
             console.log(phone);
             console.log(userIdPost);
 
-            this.userRepository.joinMe(userIdPost, userName, phone);
+            // this.userRepository.joinMe(userIdPost, userName, phone);
+            this.userRepository.joinMe(userIdPost, userName, phone).then(()=>{
+                this.registerGetPartners();
+            });
 
         });
     }

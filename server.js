@@ -18,22 +18,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // These define our API:
 
-// let user = new User({
-//   userName:  'tamar' ,
-//   password: '11111' ,
-//   posts: [{  city: 'Lod',
-//     street: 'gordon',
-//     trainingType: 'running',
-//     distance: '2-5 Km',
-//     departureTime: '16:00'}]
-// });
-
-// user.save();
-
-
-
-
-
 // 1) to handle getting all users and their posts
 app.get('/users', (req, res) => {
   // reads the data of users from the db and send it as a respone to the client
@@ -83,20 +67,22 @@ function userMiddleware(req, res, next) {
 app.post('/login', userMiddleware, (req, res) => {
   console.log('body:');
   console.log(req.body); // user and password from the login-Form
-  console.log(req.userArray); // user array
+  // console.log(req.userArray); // user array
 
   //check if user name exists in db
-  let pswdFromDB, userId;
+  let pswdFromDB, userId, phone;
   let isExist = false;
   for (let i = 0; i < req.userArray.length; i++) {
     if (req.userArray[i].userName === req.body.userName) {
       isExist = true;
       pswdFromDB = req.userArray[i].password;
       userId = req.userArray[i]._id;
+      phone = req.userArray[i].phone;
       break;
     }
   }
   console.log(' user name exist : ' + isExist);
+console.log('userId: '+userId +' phone: '+phone);
 
   if (!isExist) {
     res.send("userNotExist");
@@ -108,15 +94,15 @@ app.post('/login', userMiddleware, (req, res) => {
     }
     else {
       // res.send("allGood");
-      res.send({ name: req.body.userName, id: userId });
+      res.send({ name: req.body.userName, id: userId, phone: phone });
     }
   }
 });
 
 app.post('/signup', userMiddleware, (req, res) => {
-  console.log('body:');
+  console.log('body signup:');
   console.log(req.body); // user and passwords from the sigup-Form
-  console.log(req.userArray); // user array
+  // console.log(req.userArray); // user array
 
   //check if username already exists in db
   let isExist = false;
@@ -136,7 +122,7 @@ app.post('/signup', userMiddleware, (req, res) => {
   }
   else {
     // res.send("allGood");
-    res.send({ name: req.body.userName, password: req.body.password, phone: req.body.phone});
+    res.send({ name: req.body.userName, password: req.body.password, phone: req.body.phone });
   }
 
 });
@@ -167,22 +153,32 @@ app.get('/posts', (req, res) => {
   });
 });
 
-app.get('/users:id', (req, res) => {
+app.get('/users/:id', (req, res) => {
   User.findById(req.params.id, function (error, user) {
+    console.log('user by id (getPartners)');
+    console.log(user);
+    console.log(' partners');
+    console.log(user.partners);
+
     if (error)
       throw error;
-    res.send(user);
+    res.send(user.partners);
   });
 });
 
 app.post('/users/:idOfPost/joinMe', (req, res) => {
-  console.log('body:');
-  console.log(req.body); 
+  console.log('body join me POST:');
+  console.log(req.body);
+
+// check the push to partners...!!!
 
   User.findByIdAndUpdate(req.params.idOfPost, { $push: { "partners": req.body } }, { new: true }, (error, user) => {
     if (error) {
       throw error;
     }
+    console.log('user after push to partners:');
+    console.log(user);
+
     res.send(user);
   });
 });
