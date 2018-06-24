@@ -96,25 +96,38 @@ class EventsHandler {
             let searchCity = $(".search-city").val();
 
             let searchDistance = "";
-            if ($(".search-distance :selected").val() != ""){
-                 searchDistance = $(".search-distance :selected").text();
+            if ($(".search-distance :selected").val() != "") {
+                searchDistance = $(".search-distance :selected").text();
             }
 
             let searchTraining = "";
-            if ($(".search-training :selected").val() != ""){
+            if ($(".search-training :selected").val() != "") {
                 searchTraining = $(".search-training :selected").text();
-           }
+            }
 
-           this.userRepository.searchPosts(searchCity, searchDistance, searchTraining).then(() => {
-             this.postsRenderer.renderPosts(this.userRepository.posts);
-             $(".search-city").val("");
-             $(".search-address").val("");
+            this.userRepository.searchPosts(searchCity, searchDistance, searchTraining).then(() => {
+                this.postsRenderer.renderPosts(this.userRepository.posts);
+                $(".search-city").val("");
+                $(".search-address").val("");
 
-        });
+            });
         });
     }
 
+    registerJoinMe() {
+        $('.posts').on('click', '.contact', () => {
+            let userIdPost = $(this).closest('.post').data('id');
+            let userName = JSON.parse(localStorage.getItem('user')).userName;
+            let phone = JSON.parse(localStorage.getItem('user')).phone;
 
+            console.log(userName);
+            console.log(phone);
+            console.log(userIdPost);
+            
+            this.userRepository.joinMe(userIdPost, userName, phone);
+
+        });
+    }
 
 }
 export default EventsHandler

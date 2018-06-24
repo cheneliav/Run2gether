@@ -168,6 +168,19 @@ app.get('/posts', (req, res) => {
 });
 
 
+app.post('/users/:idOfPost/joinMe', (req, res) => {
+  console.log('body:');
+  console.log(req.body); 
+
+  User.findByIdAndUpdate(req.params.idOfPost, { $push: { "partners": req.body } }, { new: true }, (error, user) => {
+    if (error) {
+      throw error;
+    }
+    res.send(user);
+  });
+});
+
+
 
 
 //PORT
