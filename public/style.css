@@ -123,7 +123,22 @@
  snackbar after sign up
 =======================================================*/
 
-#snackbar {
+#snackbar2 {
+  visibility: hidden;
+  /* min-width: 250px; */
+  width: 307px;
+  background: #980201;
+  color: #fff;
+  text-align: center;
+  border-radius: 23px;
+  padding: 16px;
+  z-index: 1;
+  font-size: 17px;
+  margin-left: 110px;
+  margin-top: 18px;
+}
+
+ #snackbar {
   visibility: hidden;
   /* min-width: 250px; */
   width: 307px;
@@ -138,7 +153,9 @@
   margin-top: 18px;
 }
 
-#snackbar.show {
+#snackbar.show
+, #snackbar2.show
+{
   visibility: visible;
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
   animation: fadein 0.5s, fadeout 0.5s 2.5s;

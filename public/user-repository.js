@@ -166,6 +166,11 @@ class UserRepository {
         console.log("The post after adding to the logged user :");
         console.log(post);
         $('#addedPost').html("greattttttt!");
+          // show success message
+          let x = document.getElementById("snackbar2");
+          x.className = "show";
+          setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+          // $('#snackbar2').toggleClass('d-none').fadeOut(3000);
 
       },
       error: function (jqXHR, textStatus, errorThrown) {
