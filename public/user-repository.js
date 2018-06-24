@@ -5,6 +5,7 @@ class UserRepository {
   constructor() {
     this.users = [];
     this.posts = [];
+    this.partners = [];
   }
 
   //request all the users from the DB
@@ -70,7 +71,7 @@ class UserRepository {
             $('#usernameError').addClass('d-none');
             break;
           default:
-            this.addUser(response.name, response.password);
+            this.addUser(response.name, response.password), response.phone;
 
             break;
         }
@@ -101,7 +102,7 @@ class UserRepository {
             break;
           default:
             //store, a JS object as JSON string, in local storage under the key "user"
-            localStorage.setItem('user', JSON.stringify({ userName: response.name, id: response.id }));
+            localStorage.setItem('user', JSON.stringify({ userName: response.name, id: response.id, phone: response.phone }));
             //move to next page
             window.location.href = "/postSearch.html";
             break;
@@ -166,11 +167,10 @@ class UserRepository {
         console.log("The post after adding to the logged user :");
         console.log(post);
         $('#addedPost').html("greattttttt!");
-          // show success message
-          let x = document.getElementById("snackbar2");
-          x.className = "show";
-          setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-          // $('#snackbar2').toggleClass('d-none').fadeOut(3000);
+        // show success message
+        let x = document.getElementById("snackbar2");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -198,6 +198,24 @@ joinMe(userIdPost, userName, phone){
 
 
 }
+
+getPartners(){
+
+    let userIdLocal = JSON.parse(localStorage.getItem('user')).id;
+
+ return $.ajax({
+  method: 'GET',
+  url: '/users/'+ userIdLocal,
+  success: function(partners) {
+    console.log(partners);
+this.partners=partners;
+  },
+  error: function(jqXHR, textStatus, errorThrown) {
+    console.log(textStatus);
+  }
+});
+}
+
 
 }
 

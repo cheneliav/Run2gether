@@ -28,6 +28,13 @@
       </div>
 
       <div id="snackbar2" class="float-right ">Your post was published successfully! </div>
+
+<!-- list of message  -->
+<div class="list-message">
+  here will be the posts
+
+</div>
+
     </div>
 
     <div class="row">
@@ -222,6 +229,13 @@
     </div>
   </script>
 
+  <script id="list-template" type="text/x-handlebars-template">
+    <div class="message">
+    <h5>Username:{{name}} | Phone: {{phone}} </h5>
+    <!-- <h5> </h5> -->
+    </div>
+  </script>
+
   <script src="jquery/dist/jquery.js"></script>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -266,6 +280,7 @@
       $("#flipPostForm").click(function () {
         $("#property1").slideToggle("slow");
       });
+
 
     });
   </script>

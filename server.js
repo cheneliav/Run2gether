@@ -136,7 +136,7 @@ app.post('/signup', userMiddleware, (req, res) => {
   }
   else {
     // res.send("allGood");
-    res.send({ name: req.body.userName, password: req.body.password });
+    res.send({ name: req.body.userName, password: req.body.password, phone: req.body.phone});
   }
 
 });
@@ -167,6 +167,13 @@ app.get('/posts', (req, res) => {
   });
 });
 
+app.get('/users:id', (req, res) => {
+  User.findById(req.params.id, function (error, user) {
+    if (error)
+      throw error;
+    res.send(user);
+  });
+});
 
 app.post('/users/:idOfPost/joinMe', (req, res) => {
   console.log('body:');
