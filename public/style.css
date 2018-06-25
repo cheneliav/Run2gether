@@ -95,6 +95,8 @@ tr:nth-child(odd) {
   padding: 0;
   border-radius: 50%;
   border: 0;
+  background: none;
+  margin: auto;
 }
 
 .disable-join {
@@ -119,6 +121,7 @@ tr:nth-child(odd) {
 
 .input-group-text {
   color: black;
+  background: #bd4902e6;
 }
 
 .post-search-background {
@@ -228,6 +231,7 @@ tr:nth-child(odd) {
   font-size: 17px;
   margin-left: 110px;
   margin-top: 18px;
+  box-shadow: 0 0 11px 5px black;
 }
 
 #snackbar.show,
