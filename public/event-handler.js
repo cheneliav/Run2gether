@@ -118,7 +118,9 @@ class EventsHandler {
 
     registerJoinMe() {
         // $('.posts').on('click', '.contact', function()  {
-        $('.posts').on('click', '.contact', (event)=>  {
+        $('.posts').on('click', '.contact', (event) => {
+            console.log('in registerJoinMe');
+
             let userIdPost = $(event.currentTarget).closest('.post').data('id');
             let userName = JSON.parse(localStorage.getItem('user')).userName;
             let phone = JSON.parse(localStorage.getItem('user')).phone;
@@ -127,17 +129,25 @@ class EventsHandler {
             console.log(phone);
             console.log(userIdPost);
 
-            // this.userRepository.joinMe(userIdPost, userName, phone);
-            this.userRepository.joinMe(userIdPost, userName, phone).then(()=>{
+            this.userRepository.joinMe(userIdPost, userName, phone).then(() => {
                 this.registerGetPartners();
             });
 
         });
     }
+
     registerGetPartners() {
-        this.userRepository.getPartners().then(() => {
-            this.messagesRenderer.renderMessages(this.userRepository.partners);
-        })
+        console.log('in registerGetPartners');
+
+        let user = JSON.parse(localStorage.getItem('user'));
+        if (user != null) {
+
+            this.userRepository.getPartners().then(() => {
+                console.log(this.userRepository.partners);
+
+                this.messagesRenderer.renderMessages(this.userRepository.partners);
+            })
+        }
     }
 
 }

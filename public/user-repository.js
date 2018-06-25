@@ -71,7 +71,7 @@ class UserRepository {
             $('#usernameError').addClass('d-none');
             break;
           default:
-            this.addUser(response.name, response.password,  response.phone);
+            this.addUser(response.name, response.password, response.phone);
 
             break;
         }
@@ -104,7 +104,7 @@ class UserRepository {
             //store, a JS object as JSON string, in local storage under the key "user"
             localStorage.setItem('user', JSON.stringify({ userName: response.name, id: response.id, phone: response.phone }));
 
-    let user = JSON.parse(localStorage.getItem('user'));
+            let user = JSON.parse(localStorage.getItem('user'));
 
             console.log('user in local storge');
             console.log(user);
@@ -188,7 +188,7 @@ class UserRepository {
 
   joinMe(userIdPost, userName, phone) {
 
-   return $.ajax({
+    return $.ajax({
       method: 'post',
       url: '/users/' + userIdPost + '/joinMe',
       data: { name: userName, phoneNum: phone },
@@ -206,6 +206,7 @@ class UserRepository {
   }
 
   getPartners() {
+    console.log('in getPartners');
 
     let user = JSON.parse(localStorage.getItem('user'));
     if (user != null) {
@@ -214,7 +215,7 @@ class UserRepository {
       return $.ajax({
         method: 'GET',
         url: '/users/' + userIdLocal,
-        success: function (partners) {
+        success: (partners) => {
           console.log('partners array ?');
           console.log(partners);
           this.partners = partners;
