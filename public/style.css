@@ -6,6 +6,13 @@
   color: white;
 }
 
+.logo {
+  width: 14%;
+  position: fixed;
+  bottom: 0;
+  left: 39px;
+}
+
 .description {
   font-family: Helvetica, Arial, Sans-Serif;
   font-size: 25px;
@@ -57,6 +64,11 @@ tr:nth-child(odd) {
   display: none;
 }
 
+.contact {
+  color: #980201;
+  font-weight: bold;
+}
+
 .hello {
   /* margin-left: 54px; */
   font: bold 24px Helvetica, Arial, Sans-Serif;
@@ -85,11 +97,11 @@ tr:nth-child(odd) {
   border: 0;
 }
 
-.disable-join{
+.disable-join {
   text-decoration: line-through;
-    text-decoration-color: red;
-    pointer-events: none;
-    cursor: default;
+  text-decoration-color: red;
+  pointer-events: none;
+  cursor: default;
 }
 
 .posts {
