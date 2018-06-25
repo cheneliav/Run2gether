@@ -117,6 +117,10 @@ class EventsHandler {
             let phone = JSON.parse(localStorage.getItem('user')).phone;
 
             this.userRepository.joinMe(userIdPost, userName, phone).then(() => {
+                //disable join after clicked it
+                // TODO: after refresh it's back again to the normal--need to fix so it will still be disable
+                $(event.currentTarget).addClass('disable-join');
+
                 this.registerGetPartners();
             });
 

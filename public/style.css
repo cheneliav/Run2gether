@@ -12,9 +12,48 @@
   font-weight: bold;
 }
 
+.row1 {
+  display: flex;
+  justify-content: space-around;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  /* width: 80%; */
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 6px;
+}
+
+th {
+  color: #bd4902;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+tr {
+  color: white;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #980201;
+  ;
+}
+
+tr:nth-child(odd) {
+  color: #980201;
+}
+
 #property1,
-#property2 {
-  width: 300px !important;
+#property2,
+.list-message {
+  /* width: 300px !important; */
   display: none;
 }
 
@@ -23,7 +62,7 @@
   font: bold 24px Helvetica, Arial, Sans-Serif;
 }
 
-.helloUser{
+.helloUser {
   color: #980201;
 }
 
@@ -39,10 +78,22 @@
   margin: 5px;
   display: inline-table;
 }
-#post{
+
+#post {
   padding: 0;
   border-radius: 50%;
   border: 0;
+}
+
+.disable-join{
+  text-decoration: line-through;
+    text-decoration-color: red;
+    pointer-events: none;
+    cursor: default;
+}
+
+.posts {
+  margin-top: 80px;
 }
 
 .container-fluid {
@@ -68,7 +119,7 @@
   width: 46px;
 }
 
-.fa-sign-in{
+.fa-sign-in {
   font-size: 22px;
 }
 
@@ -88,6 +139,17 @@
   transition: all 0.12s ease-out;
 }
 
+#flipMessage {
+  -webkit-transition: all 0.12s ease-out;
+  transition: all 0.12s ease-out;
+  padding-bottom: 15px;
+  cursor: pointer;
+  /* color: #bd4902; */
+  color: #980201;
+  font-weight: bold;
+  /* text-align: center; */
+}
+
 #flipSearchForm:hover,
 #flipPostForm:hover {
   position: relative;
@@ -98,7 +160,9 @@
   text-shadow: 1px 1px #48362f, 2px 2px #48362f, 3px 3px #48362f, 4px 4px #48362f, 5px 5px #48362f, 6px 6px #48362f;
 }
 
-.post-search-div, .post-icon, .search-icon {
+.post-search-div,
+.post-icon,
+.search-icon {
   display: flex;
   /* justify-content: space-around; */
   justify-content: center;
@@ -134,11 +198,12 @@
   padding: 16px;
   z-index: 1;
   font-size: 17px;
-  margin-left: 110px;
-  margin-top: 18px;
+  /* margin-left: 110px; */
+  /* margin-top: 18px; */
+  box-shadow: 0 0 11px 5px black;
 }
 
- #snackbar {
+#snackbar {
   visibility: hidden;
   /* min-width: 250px; */
   width: 307px;
@@ -153,9 +218,8 @@
   margin-top: 18px;
 }
 
-#snackbar.show
-, #snackbar2.show
-{
+#snackbar.show,
+#snackbar2.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
   animation: fadein 0.5s, fadeout 0.5s 2.5s;

@@ -128,8 +128,19 @@ class UserRepository {
       url: '/posts?' + query,
       dataType: 'json',
       success: (posts) => {
+
+        let user = JSON.parse(localStorage.getItem('user'));
+        let userIdLocal = user.id;
+        this.posts = [];
+        //in order to show to the user only other posts , not include his posts
+        posts.forEach(post => {
+          if (post.idUser !== userIdLocal) {
+            this.posts.push(post);
+          }
+        });
+
         // add the posts result to array
-        this.posts = posts;
+        // this.posts = posts;
       }
     });
   }
@@ -179,6 +190,7 @@ class UserRepository {
       success: (res) => {
         console.log("The user:");
         console.log(res);
+
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
@@ -198,10 +210,9 @@ class UserRepository {
       method: 'GET',
       url: '/users/' + userIdLocal,
       success: (partners) => {
-        console.log('partners array ?');
-        console.log(partners);
+        console.log('partners array:');
         this.partners = partners;
-        console.log(this.partners);
+        // console.log(this.partners);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus);

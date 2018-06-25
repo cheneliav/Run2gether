@@ -18,8 +18,8 @@
   <!-- <div class="container"> -->
   <div class="container-fluid">
 
-    <div class="row">
-      <div class="hello">
+    <div class="row row1 ">
+      <div class="hello col-md-3">
         <span class="helloUser"></span>
         <br>
         <a href="index.html" id="loggedOut">Logged out
@@ -27,21 +27,24 @@
         </a>
       </div>
 
-      <div id="snackbar2" class="float-right ">Your post was published successfully! </div>
+      <div id="snackbar2" class="float-right col-md-3 ">Your post was published successfully! </div>
 
       <!-- list of message  -->
-      <div class="list-message">
-        here will be the messages
+    <div class="col-md-3 ">
+        <h4 id="flipMessage"> Your Messages
+            <i class="fa fa-envelope"></i>
+        </h4>
+        <table class="list-message">
+          </table>
+    </div>
 
-      </div>
 
     </div>
 
     <div class="row">
-
       <!-- posts result of search -->
       <div class="col-md-6">
-        here will be the posts
+        <!-- here will be the posts -->
         <div class="posts"></div>
       </div>
 
@@ -221,10 +224,10 @@
   </script>
 
   <script id="list-template" type="text/x-handlebars-template">
-    <div class="message">
-    <h5>Username: {{name}} | Phone: {{phoneNum}} </h5>
-    <!-- <h5> </h5> -->
-    </div>
+      <tr>
+          <td>  {{name}} </td>
+          <td>  {{phoneNum}} </td>
+      </tr>
   </script>
 
   <script src="jquery/dist/jquery.js"></script>
@@ -242,7 +245,7 @@
   <script src="handlebars/dist/handlebars.js"></script>
   <script src="main.js" type="module"></script>
 
-  <script >
+  <script>
 
     $(document).ready(function () {
       // inital the clock input
@@ -276,6 +279,10 @@
 
       $("#flipPostForm").click(function () {
         $("#property1").slideToggle("slow");
+      });
+
+      $("#flipMessage").click(function () {
+        $(".list-message").slideToggle("slow");
       });
 
 
