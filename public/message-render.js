@@ -13,6 +13,10 @@ class MessageRenderer {
     console.log(messages);
     this.$list.empty();
     // console.log(posts.length);
+    if(messages.length==0){
+      this.$list.append('<h4>Empty for now...</h4>');
+    }
+    else{
     let template = Handlebars.compile(this.$listTemplate);
     this.$list.append('<tr><th>User name</th><th>Phone</th></tr>');
       for (let i = 0; i < messages.length; i++) {
@@ -20,6 +24,7 @@ class MessageRenderer {
         console.log(newHTML);
         this.$list.append(newHTML);
       }
+    }
 
   }
 
