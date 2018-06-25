@@ -19,10 +19,6 @@
   font-weight: bold;
 }
 
-.row1 {
-  display: flex;
-  justify-content: space-around;
-}
 
 table {
   font-family: arial, sans-serif;
@@ -117,6 +113,13 @@ tr:nth-child(odd) {
 .row {
   margin-left: 35px;
   margin-top: 55px;
+}
+
+
+.row1 {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 0px;
 }
 
 .input-group-text {
