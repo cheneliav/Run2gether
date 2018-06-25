@@ -20,4 +20,5 @@ eventsHandler.registerLogIn();
 eventsHandler.registerLoggedOut();
 eventsHandler.registerAddPost();
 eventsHandler.registerSearch();
+eventsHandler.registerRemoveFromView();
 

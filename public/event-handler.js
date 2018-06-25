@@ -140,5 +140,12 @@ class EventsHandler {
         }
     }
 
+
+    registerRemoveFromView(){
+        $('.posts').on('click','.remove-post', function() {
+            //remove post from view
+            $(this).closest('.post').remove();
+        });
+    }
 }
 export default EventsHandler
