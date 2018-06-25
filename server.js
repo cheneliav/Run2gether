@@ -7,7 +7,6 @@ mongoose.connect(myConnection, { useMongoClient: true })
   .then(() => { console.log('Successfully connected to mongoDB'); })
   .catch((error) => console.error(error));
 
-// let Post = require('./models/postModel');
 let User = require('./models/userModel');
 
 let app = express();
@@ -64,8 +63,9 @@ function userMiddleware(req, res, next) {
   });
 };
 
+// 4) to handle login user
 app.post('/login', userMiddleware, (req, res) => {
-  console.log('body:');
+  console.log('body login:');
   console.log(req.body); // user and password from the login-Form
   // console.log(req.userArray); // user array
 
@@ -82,7 +82,7 @@ app.post('/login', userMiddleware, (req, res) => {
     }
   }
   console.log(' user name exist : ' + isExist);
-console.log('userId: '+userId +' phone: '+phone);
+  console.log('userId: ' + userId + ' phone: ' + phone);
 
   if (!isExist) {
     res.send("userNotExist");
@@ -99,6 +99,7 @@ console.log('userId: '+userId +' phone: '+phone);
   }
 });
 
+// 5) to handle signup new user
 app.post('/signup', userMiddleware, (req, res) => {
   console.log('body signup:');
   console.log(req.body); // user and passwords from the sigup-Form
@@ -128,9 +129,8 @@ app.post('/signup', userMiddleware, (req, res) => {
 });
 
 
-
+// 6) to handle a search
 app.get('/posts', (req, res) => {
-
   let city = req.query.city;
   let distance = req.query.distance;
   let training = req.query.training;
@@ -147,42 +147,38 @@ app.get('/posts', (req, res) => {
         }
       }
     }
+    console.log('postsResult: ');
     console.log(postsResult);
 
     res.send(postsResult);
   });
 });
 
+// 7) to handle getting all partners of logged user
 app.get('/users/:id', (req, res) => {
   User.findById(req.params.id, function (error, user) {
-    console.log('user by id (getPartners)');
-    console.log(user);
-    console.log(' partners');
+    console.log('array partners of logged user:');
     console.log(user.partners);
-
     if (error)
       throw error;
     res.send(user.partners);
   });
 });
 
+// 8) to handle adding object partner to partners array
 app.post('/users/:idOfPost/joinMe', (req, res) => {
   console.log('body join me POST:');
   console.log(req.body);
-
-// check the push to partners...!!!
-
   User.findByIdAndUpdate(req.params.idOfPost, { $push: { "partners": req.body } }, { new: true }, (error, user) => {
     if (error) {
       throw error;
     }
-    console.log('user after push to partners:');
+    console.log('user -after pushing to partners array:');
     console.log(user);
 
     res.send(user);
   });
 });
-
 
 
 

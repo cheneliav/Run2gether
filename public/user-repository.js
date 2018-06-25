@@ -9,7 +9,6 @@ class UserRepository {
   }
 
   //request all the users from the DB
-  //in the success handler- populate the users array
   getUsers() {
     return $.ajax({
       method: 'GET',
@@ -18,7 +17,7 @@ class UserRepository {
       success: (users) => {
         console.log('in getUsers, users-array:');
         console.log(users);
-        // set the users and the posts to array
+        // set the users to array
         this.users = users;
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -33,14 +32,13 @@ class UserRepository {
       method: 'POST',
       url: '/users',
       data: { userName: userName, password: password, phone: phone, posts: [] },
-      //After a new user has been created in the DB it should be returned to the client
       success: (newUser) => {
         // adding the user to users array
         this.users.push(newUser);
         console.log('users array after new user signup:');
         console.log(this.users);
 
-        // show success message
+        // show success sign up message
         let x = document.getElementById("snackbar");
         x.className = "show";
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
@@ -72,7 +70,6 @@ class UserRepository {
             break;
           default:
             this.addUser(response.name, response.password, response.phone);
-
             break;
         }
       },
@@ -104,11 +101,6 @@ class UserRepository {
             //store, a JS object as JSON string, in local storage under the key "user"
             localStorage.setItem('user', JSON.stringify({ userName: response.name, id: response.id, phone: response.phone }));
 
-            let user = JSON.parse(localStorage.getItem('user'));
-
-            console.log('user in local storge');
-            console.log(user);
-
             //move to next page
             window.location.href = "/postSearch.html";
             break;
@@ -121,6 +113,7 @@ class UserRepository {
   }
 
   searchPosts(searchCity, searchDistance, searchTraining) {
+    console.log('in search');
 
     let params = {
       city: searchCity,
@@ -128,24 +121,15 @@ class UserRepository {
       training: searchTraining
     };
     let query = $.param(params);
-
-    // document.write(query);
-
-    console.log('in search');
-
     console.log(query);
+
     return $.ajax({
       method: 'GET',
       url: '/posts?' + query,
       dataType: 'json',
       success: (posts) => {
-
-        // add the posts to array
+        // add the posts result to array
         this.posts = posts;
-
-        console.log("this.posts:");
-        console.log(this.posts);
-
       }
     });
   }
@@ -172,7 +156,7 @@ class UserRepository {
       success: (post) => {
         console.log("The post after adding to the logged user :");
         console.log(post);
-        $('#addedPost').html("greattttttt!");
+        // $('#addedPost').html("greattttttt!");
         // show success message
         let x = document.getElementById("snackbar2");
         x.className = "show";
@@ -193,9 +177,8 @@ class UserRepository {
       url: '/users/' + userIdPost + '/joinMe',
       data: { name: userName, phoneNum: phone },
       success: (res) => {
-        console.log("The user{name, phone}:");
+        console.log("The user:");
         console.log(res);
-        // this.getPartners();
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
@@ -209,27 +192,21 @@ class UserRepository {
     console.log('in getPartners');
 
     let user = JSON.parse(localStorage.getItem('user'));
-    if (user != null) {
-      let userIdLocal = user.id;
+    let userIdLocal = user.id;
 
-      return $.ajax({
-        method: 'GET',
-        url: '/users/' + userIdLocal,
-        success: (partners) => {
-          console.log('partners array ?');
-          console.log(partners);
-          this.partners = partners;
-          console.log(this.partners);
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.log(textStatus);
-        }
-      });
-    }
-    else return new Promise(function (resolve, b) {
-      resolve(1);
-    })
+    return $.ajax({
+      method: 'GET',
+      url: '/users/' + userIdLocal,
+      success: (partners) => {
+        console.log('partners array ?');
+        console.log(partners);
+        this.partners = partners;
+        console.log(this.partners);
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
   }
 
 

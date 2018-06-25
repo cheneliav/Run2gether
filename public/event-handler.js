@@ -9,10 +9,8 @@ class EventsHandler {
     }
 
     /*=====================================================
-    add User | sign up
+    add User- sign up
     =======================================================*/
-
-
 
     registerAddUser() {
         $('.signup').on('click', (event) => {
@@ -26,9 +24,6 @@ class EventsHandler {
             if (userName == "" || password == "" || repeatPassword == "" || phone == "")
                 return;
 
-            // this.userRepository.SignUp().then(() => {
-            //     this.userRepository.addUser(userName, password);
-            // }).catch(() => { console.log('catch- error in adding user function'); });
             this.userRepository.SignUp().catch(() => { console.log('catch- error in adding user function'); });
 
             event.preventDefault();
@@ -56,9 +51,10 @@ class EventsHandler {
     registerAddPost() {
         $('#post').on('click', (e) => {
             // e.preventDefault();
+            if ($('#time').val() == "")
+                return;
             if ($('#myDistance :selected').val() == "")
                 return;
-
             if ($('#myType :selected').val() == "")
                 return;
 
@@ -83,13 +79,9 @@ class EventsHandler {
             // remove the user from the local storage
             localStorage.removeItem('user');
             console.log('remove from local storgae');
-
         })
     }
 
-    /*=====================================================
-    search
-    =======================================================*/
 
     registerSearch() {
         $('.searchBtn').on('click', (event) => {
@@ -117,17 +109,12 @@ class EventsHandler {
     }
 
     registerJoinMe() {
-        // $('.posts').on('click', '.contact', function()  {
         $('.posts').on('click', '.contact', (event) => {
             console.log('in registerJoinMe');
 
             let userIdPost = $(event.currentTarget).closest('.post').data('id');
             let userName = JSON.parse(localStorage.getItem('user')).userName;
             let phone = JSON.parse(localStorage.getItem('user')).phone;
-
-            console.log(userName);
-            console.log(phone);
-            console.log(userIdPost);
 
             this.userRepository.joinMe(userIdPost, userName, phone).then(() => {
                 this.registerGetPartners();
@@ -141,7 +128,6 @@ class EventsHandler {
 
         let user = JSON.parse(localStorage.getItem('user'));
         if (user != null) {
-
             this.userRepository.getPartners().then(() => {
                 console.log(this.userRepository.partners);
 

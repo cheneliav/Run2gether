@@ -1,4 +1,3 @@
-
 import PostsRenderer from './posts-renderer.js';
 import MessageRenderer from './message-render.js';
 import EventsHandler from './event-handler.js';
@@ -12,16 +11,12 @@ let eventsHandler = new EventsHandler(postsRenderer, userRepository, messagesRen
 
 console.log('im in main');
 
-// get all the users
-// in order to check if user exist or not in db
 userRepository.getUsers();
-
 eventsHandler.registerGetPartners();
 
 eventsHandler.registerJoinMe();
 eventsHandler.registerAddUser();
 eventsHandler.registerLogIn();
-
 eventsHandler.registerLoggedOut();
 eventsHandler.registerAddPost();
 eventsHandler.registerSearch();
