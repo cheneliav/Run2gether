@@ -141,11 +141,18 @@ class EventsHandler {
     }
 
 
-    registerRemoveFromView(){
-        $('.posts').on('click','.remove-post', function() {
+    registerRemoveFromView() {
+        $('.posts').on('click', '.remove-post', function () {
             //remove post from view
             $(this).closest('.post').remove();
         });
     }
+
+    registerRefresh() {
+        $('#flipMessage').on('click', function () {
+            this.messagesRenderer.renderMessages(this.userRepository.partners);
+        })
+    }
+
 }
 export default EventsHandler
