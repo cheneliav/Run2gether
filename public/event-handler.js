@@ -148,6 +148,7 @@ class EventsHandler {
         });
     }
 
+    //refresh messages by click on button
     registerRefresh() {
         $('.refresh').on('click', () => {
             this.messagesRenderer.renderMessages(this.userRepository.partners);
