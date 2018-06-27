@@ -18,15 +18,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // These define our API:
 
 // 1) to handle getting all users and their posts
-app.get('/users', (req, res) => {
-  // reads the data of users from the db and send it as a respone to the client
-  User.find(function (error, users) {
-    if (error)
-      throw error;
-    // console.log(users); //log here in the console all the users
-    res.send(users);
-  });
-});
+// app.get('/users', (req, res) => {
+//   // reads the data of users from the db and send it as a respone to the client
+//   User.find(function (error, users) {
+//     if (error)
+//       throw error;
+//     // console.log(users); //log here in the console all the users
+//     res.send(users);
+//   });
+// });
 
 
 // 2) to handle adding a user
