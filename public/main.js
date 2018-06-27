@@ -11,8 +11,6 @@ let eventsHandler = new EventsHandler(postsRenderer, userRepository, messagesRen
 
 //console.log('im in main');
 
-//userRepository.getUsers();
-
 eventsHandler.registerGetPartners();
 
 eventsHandler.registerJoinMe();

@@ -32,13 +32,17 @@
       <div id="snackbar2" class="float-right col-md-3 ">Your post was published successfully! </div>
 
       <!-- list of message  -->
-    <div class="col-md-3 ">
-        <h4 id="flipMessage"> Your Messages
-            <i class="fa fa-envelope"></i>
+      <div class="col-md-3">
+
+        <img class="refresh" src="https://image.flaticon.com/icons/svg/61/61076.svg" width="26px" alt="refresh">
+
+        <h4 id="flipMessage">
+          Your Messages
+          <i class="fa fa-envelope"></i>
         </h4>
         <table class="list-message">
-          </table>
-    </div>
+        </table>
+      </div>
 
 
     </div>
@@ -209,7 +213,8 @@
 
     <!-- <img src="animationlogo3.gif" class="col-md-6 col-md-offset-3 logo"> -->
 
-  </div> <!-- "container-fluid" -->
+  </div>
+  <!-- "container-fluid" -->
 
 
 
@@ -228,10 +233,10 @@
   </script>
 
   <script id="list-template" type="text/x-handlebars-template">
-      <tr>
-          <td>  {{name}} </td>
-          <td>  {{phoneNum}} </td>
-      </tr>
+    <tr>
+      <td> {{name}} </td>
+      <td> {{phoneNum}} </td>
+    </tr>
   </script>
 
   <script src="jquery/dist/jquery.js"></script>
@@ -250,7 +255,6 @@
   <script src="main.js" type="module"></script>
 
   <script>
-
     $(document).ready(function () {
       // inital the clock input
       let input = $('#time');
@@ -285,13 +289,9 @@
         $("#property1").slideToggle("slow");
       });
 
-      // $("#flipMessage").click(function () {
-      //   $(".list-message").slideToggle("slow");
-      // });
-
-
-
-
+      $("#flipMessage").click(function () {
+        $(".list-message").slideToggle("slow");
+      });
 
     });
   </script>
