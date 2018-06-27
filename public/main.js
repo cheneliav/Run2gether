@@ -22,5 +22,5 @@ eventsHandler.registerAddPost();
 eventsHandler.registerSearch();
 eventsHandler.registerRemoveFromView();
 
-//eventsHandler.registerRefresh();
+eventsHandler.registerRefresh();
 
