@@ -9,7 +9,7 @@ let messagesRenderer = new MessageRenderer();
 
 let eventsHandler = new EventsHandler(postsRenderer, userRepository, messagesRenderer);
 
-console.log('im in main');
+//console.log('im in main');
 
 userRepository.getUsers();
 eventsHandler.registerGetPartners();

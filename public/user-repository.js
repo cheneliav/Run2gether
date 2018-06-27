@@ -15,13 +15,13 @@ class UserRepository {
       url: 'users',
       dataType: 'json',
       success: (users) => {
-        console.log('in getUsers, users-array:');
-        console.log(users);
+        //console.log('in getUsers, users-array:');
+        //console.log(users);
         // set the users to array
         this.users = users;
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        console.log(textStatus);
+        //console.log(textStatus);
       }
     });
   }
@@ -35,8 +35,8 @@ class UserRepository {
       success: (newUser) => {
         // adding the user to users array
         this.users.push(newUser);
-        console.log('users array after new user signup:');
-        console.log(this.users);
+        // console.log('users array after new user signup:');
+        //console.log(this.users);
 
         // show success sign up message
         let x = document.getElementById("snackbar");
@@ -57,7 +57,7 @@ class UserRepository {
       url: '/signup',
       data: $('#formsignup').serialize(),
       success: (response) => {
-        console.log(response);
+        //console.log(response);
 
         switch (response) {
           case "userExist":
@@ -86,7 +86,7 @@ class UserRepository {
       url: '/login',
       data: $('#formlogin').serialize(),
       success: (response) => {
-        console.log(response);
+        //console.log(response);
 
         switch (response) {
           case "userNotExist":
@@ -113,7 +113,7 @@ class UserRepository {
   }
 
   searchPosts(searchCity, searchDistance, searchTraining) {
-    console.log('in search');
+    //console.log('in search');
 
     let params = {
       city: searchCity,
@@ -121,7 +121,7 @@ class UserRepository {
       training: searchTraining
     };
     let query = $.param(params);
-    console.log(query);
+    //console.log(query);
 
     return $.ajax({
       method: 'GET',
@@ -165,8 +165,8 @@ class UserRepository {
       url: '/users/' + user.id + '/posts',
       data: postObj,
       success: (post) => {
-        console.log("The post after adding to the logged user :");
-        console.log(post);
+        //console.log("The post after adding to the logged user :");
+        //console.log(post);
         // $('#addedPost').html("greattttttt!");
         // show success message
         let x = document.getElementById("snackbar2");
@@ -188,8 +188,8 @@ class UserRepository {
       url: '/users/' + userIdPost + '/joinMe',
       data: { name: userName, phoneNum: phone },
       success: (res) => {
-        console.log("The user:");
-        console.log(res);
+        //console.log("The user:");
+        //console.log(res);
 
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -201,7 +201,7 @@ class UserRepository {
   }
 
   getPartners() {
-    console.log('in getPartners');
+    // console.log('in getPartners');
 
     let user = JSON.parse(localStorage.getItem('user'));
     let userIdLocal = user.id;
@@ -210,7 +210,7 @@ class UserRepository {
       method: 'GET',
       url: '/users/' + userIdLocal,
       success: (partners) => {
-        console.log('partners array:');
+        //console.log('partners array:');
         this.partners = partners;
         // console.log(this.partners);
       },

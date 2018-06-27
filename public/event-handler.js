@@ -5,7 +5,7 @@ class EventsHandler {
         this.postsRenderer = postsRenderer;
         this.messagesRenderer = messagesRenderer;
         this.$posts = $(".posts");
-        console.log('in constructor user');
+      //  console.log('in constructor user');
     }
 
     /*=====================================================
@@ -14,7 +14,7 @@ class EventsHandler {
 
     registerAddUser() {
         $('.signup').on('click', (event) => {
-            console.log('in registerAddUser event:');
+           // console.log('in registerAddUser event:');
 
             let userName = $("#userName").val();
             let password = $("#pswd").val();
@@ -33,7 +33,7 @@ class EventsHandler {
 
     registerLogIn() {
         $('.login').on('click', (event) => {
-            console.log('in login ');
+           // console.log('in login ');
 
             let userName = $("#name").val();
             let password = $("#pswdLogIn").val();
@@ -78,7 +78,7 @@ class EventsHandler {
         $('#loggedOut').on('click', () => {
             // remove the user from the local storage
             localStorage.removeItem('user');
-            console.log('remove from local storgae');
+            //console.log('remove from local storgae');
         })
     }
 
@@ -110,7 +110,7 @@ class EventsHandler {
 
     registerJoinMe() {
         $('.posts').on('click', '.contact', (event) => {
-            console.log('in registerJoinMe');
+           // console.log('in registerJoinMe');
 
             let userIdPost = $(event.currentTarget).closest('.post').data('id');
             let userName = JSON.parse(localStorage.getItem('user')).userName;
@@ -128,12 +128,12 @@ class EventsHandler {
     }
 
     registerGetPartners() {
-        console.log('in registerGetPartners');
+        //console.log('in registerGetPartners');
 
         let user = JSON.parse(localStorage.getItem('user'));
         if (user != null) {
             this.userRepository.getPartners().then(() => {
-                console.log(this.userRepository.partners);
+                //console.log(this.userRepository.partners);
 
                 this.messagesRenderer.renderMessages(this.userRepository.partners);
             })

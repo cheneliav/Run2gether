@@ -9,10 +9,9 @@ class MessageRenderer {
   }
 
   renderMessages(messages) {
-    console.log('in render messages');
-    console.log(messages);
+    //console.log('in render messages');
+    //console.log(messages);
     this.$list.empty();
-    // console.log(posts.length);
     if(messages.length==0){
       this.$list.append('<h4>Empty for now...</h4>');
     }
@@ -21,7 +20,6 @@ class MessageRenderer {
     this.$list.append('<tr><th>User name</th><th>Phone</th></tr>');
       for (let i = 0; i < messages.length; i++) {
         let newHTML = template(messages[i]);
-        console.log(newHTML);
         this.$list.append(newHTML);
       }
     }
