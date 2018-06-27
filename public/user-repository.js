@@ -8,23 +8,6 @@ class UserRepository {
     this.partners = [];
   }
 
-  //request all the users from the DB
-  getUsers() {
-    return $.ajax({
-      method: 'GET',
-      url: 'users',
-      dataType: 'json',
-      success: (users) => {
-        //console.log('in getUsers, users-array:');
-        //console.log(users);
-        // set the users to array
-        this.users = users;
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        //console.log(textStatus);
-      }
-    });
-  }
 
   addUser(userName, password, phone) {
     console.log('in AddUser:');
