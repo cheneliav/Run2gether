@@ -5,7 +5,7 @@ class EventsHandler {
         this.postsRenderer = postsRenderer;
         this.messagesRenderer = messagesRenderer;
         this.$posts = $(".posts");
-      //  console.log('in constructor user');
+        //  console.log('in constructor user');
     }
 
     /*=====================================================
@@ -14,7 +14,7 @@ class EventsHandler {
 
     registerAddUser() {
         $('.signup').on('click', (event) => {
-           // console.log('in registerAddUser event:');
+            // console.log('in registerAddUser event:');
 
             let userName = $("#userName").val();
             let password = $("#pswd").val();
@@ -33,7 +33,7 @@ class EventsHandler {
 
     registerLogIn() {
         $('.login').on('click', (event) => {
-           // console.log('in login ');
+            // console.log('in login ');
 
             let userName = $("#name").val();
             let password = $("#pswdLogIn").val();
@@ -110,7 +110,7 @@ class EventsHandler {
 
     registerJoinMe() {
         $('.posts').on('click', '.contact', (event) => {
-           // console.log('in registerJoinMe');
+            // console.log('in registerJoinMe');
 
             let userIdPost = $(event.currentTarget).closest('.post').data('id');
             let userName = JSON.parse(localStorage.getItem('user')).userName;
@@ -149,8 +149,8 @@ class EventsHandler {
     }
 
     registerRefresh() {
-        $('#flipMessage').on('click',  ()=> {
-        $(".list-message").slideToggle("slow");
+        $('#flipMessage').on('click', () => {
+            $(".list-message").slideToggle("slow");
             this.messagesRenderer.renderMessages(this.userRepository.partners);
         })
     }
