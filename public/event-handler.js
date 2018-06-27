@@ -149,7 +149,7 @@ class EventsHandler {
     }
 
     registerRefresh() {
-        $('#flipMessage').on('click', function () {
+        $('#flipMessage').on('click',  ()=> {
         $(".list-message").slideToggle("slow");
             this.messagesRenderer.renderMessages(this.userRepository.partners);
         })
