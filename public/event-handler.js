@@ -119,9 +119,9 @@ class EventsHandler {
             this.userRepository.joinMe(userIdPost, userName, phone).then(() => {
                 //disable join after clicked it
                 // TODO: after refresh it's back again to the normal--need to fix so it will still be disable
+                // maybe add boolean in each post -and set it to- join:true - after click. the deafult is: false
+                // when it's true- add this class below for each post with join:true ...
                 $(event.currentTarget).addClass('disable-join');
-
-                this.registerGetPartners();
             });
 
         });
@@ -129,11 +129,12 @@ class EventsHandler {
 
     registerGetPartners() {
         //console.log('in registerGetPartners');
-
         let user = JSON.parse(localStorage.getItem('user'));
+        // console.log(user);
+
         if (user != null) {
             this.userRepository.getPartners().then(() => {
-                //console.log(this.userRepository.partners);
+                // console.log(this.userRepository.partners);
 
                 this.messagesRenderer.renderMessages(this.userRepository.partners);
             })
@@ -143,7 +144,7 @@ class EventsHandler {
 
     registerRemoveFromView() {
         $('.posts').on('click', '.remove-post', function () {
-            //remove post from view
+            //remove post from -view-
             $(this).closest('.post').remove();
         });
     }
@@ -151,7 +152,8 @@ class EventsHandler {
     //refresh messages by click on button
     registerRefresh() {
         $('.refresh').on('click', () => {
-            this.messagesRenderer.renderMessages(this.userRepository.partners);
+            // this.messagesRenderer.renderMessages(this.userRepository.partners);
+            this.registerGetPartners();
         })
     }
 
