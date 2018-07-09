@@ -2,7 +2,7 @@
 
 
 ### Installing
-install the node modules by navigate to the project folder in cmd and type
+install the node modules by navigate to the project folder (after clone) in cmd and type
 ```
 npm install
 ```
