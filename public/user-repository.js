@@ -10,7 +10,7 @@ class UserRepository {
 
 
   addUser(userName, password, phone) {
-    console.log('in AddUser:');
+    // console.log('in AddUser:');
     $.ajax({
       method: 'POST',
       url: '/users',
